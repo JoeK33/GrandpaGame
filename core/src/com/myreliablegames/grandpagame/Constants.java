@@ -11,4 +11,6 @@ public class Constants {
     public static final int PILLS_HIGH = 7;
 
     public static final int PILL_SIZE = 32;
+
+    public static final int GRANDPA_HEALTH = 100;
 }

@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Created by Joe on 7/5/2016.
  */
-public class LevelTwo extends Level {
-
-    public LevelTwo() {
-        pillHolder.populate(25);
+public class LevelThree extends Level {
+    public LevelThree() {
+        pillHolder.populate(50);
     }
 
     @Override
@@ -27,4 +26,3 @@ public class LevelTwo extends Level {
         super.dispose();
     }
 }
-

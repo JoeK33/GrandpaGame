@@ -2,6 +2,8 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+
 
 /**
  * Created by Joe on 7/5/2016.
@@ -23,9 +25,7 @@ public class PillHolder {
         for (int pillX = 0; pillX < Constants.PILLS_WIDE - 1; pillX++) {
             for (int pillY = 0; pillY < Constants.PILLS_HIGH - 1; pillY++) {
                 if (pills[pillX][pillY] != null) {
-                    pills[pillX][pillY].draw(batch,
-                            (pillX * Constants.PILL_SIZE) + XDrawOffset + (pillPadding * pillX),
-                            (pillY * Constants.PILL_SIZE) + YDrawOffset + (pillPadding * pillY));
+                    pills[pillX][pillY].draw(batch);
                 }
             }
         }
@@ -53,12 +53,30 @@ public class PillHolder {
         int yChoice = (int) (Math.random() * Constants.PILLS_HIGH);
 
         if (pills[xChoice][yChoice] == null) {
-            pills[xChoice][yChoice] = new Pill(assets);
+            pills[xChoice][yChoice] = new Pill(assets, new Vector2(
+                    (xChoice * Constants.PILL_SIZE) + XDrawOffset + (pillPadding * xChoice),
+                    (yChoice * Constants.PILL_SIZE) + YDrawOffset + (pillPadding * yChoice)),
+                    -15);
             return true;
         } else {
             return false;
 
         }
+    }
+
+    // Returns null if no pill to touch.
+    public Pill getTouchedPill(Vector2 touchPosition) {
+        for (int pillX = 0; pillX < Constants.PILLS_WIDE - 1; pillX++) {
+            for (int pillY = 0; pillY < Constants.PILLS_HIGH - 1; pillY++) {
+                if (pills[pillX][pillY] != null) {
+                    if(pills[pillX][pillY].touched(touchPosition)) {
+                        return pills[pillX][pillY];
+                    }
+
+                }
+            }
+        }
+        return null;
     }
 
     public void clear() {

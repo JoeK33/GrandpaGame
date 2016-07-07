@@ -17,6 +17,9 @@ public class LevelFactory {
             case Two:
                 level = new LevelTwo();
                 break;
+            case Three:
+                level = new LevelThree();
+                break;
             default:
                 level = new LevelOne();
                 break;

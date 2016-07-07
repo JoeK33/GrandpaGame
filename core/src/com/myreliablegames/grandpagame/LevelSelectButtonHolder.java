@@ -44,7 +44,7 @@ public class LevelSelectButtonHolder {
 
         skin.add("default", textButtonStyle);
 
-        Label label = new Label("LevelNumber Select", new Label.LabelStyle(font, Color.WHITE));
+        Label label = new Label("Level Select", new Label.LabelStyle(font, Color.WHITE));
         table.add(label).colspan(3).expandX().expandY().center();
         table.row();
 

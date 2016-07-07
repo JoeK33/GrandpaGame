@@ -18,6 +18,7 @@ public class LevelOne extends Level {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
 
     }
 
