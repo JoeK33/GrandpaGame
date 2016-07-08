@@ -22,14 +22,14 @@ public class GameScreen extends BaseScreen implements InputProcessor {
     public GameScreen(GrandpaGame game, GrandpaGame.LevelNumber levelNumber) {
         super(game);
         this.levelNumber = levelNumber;
-        Gdx.input.setInputProcessor(this);
-        level = LevelFactory.getLevel(levelNumber);
+        level = LevelFactory.getLevel(levelNumber, this, game);
     }
+
 
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         super.render(delta);
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
@@ -54,6 +54,11 @@ public class GameScreen extends BaseScreen implements InputProcessor {
     public void resize(int width, int height) {
         super.resize(width, height);
         level.resize(width, height);
+    }
+
+    @Override
+    public void show() {
+        level.show();
     }
 
     @Override

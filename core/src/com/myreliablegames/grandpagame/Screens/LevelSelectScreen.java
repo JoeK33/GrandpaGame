@@ -14,7 +14,7 @@ public class LevelSelectScreen extends BaseScreen {
 
     public LevelSelectScreen(GrandpaGame game) {
         super(game);
-        buttons = new LevelSelectButtonHolder(font, game);
+        buttons = new LevelSelectButtonHolder(font, game, this);
     }
 
     public void render(float delta) {

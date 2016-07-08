@@ -46,6 +46,10 @@ public class BaseScreen extends ScreenAdapter {
         camera.setToOrtho(false, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
     }
 
+    public Viewport getViewport() {
+        return viewport;
+    }
+
     @Override
     public void dispose() {
         super.dispose();

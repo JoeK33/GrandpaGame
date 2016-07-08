@@ -12,13 +12,12 @@ public class PillHolder {
 
     private Pill[][] pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
     private BaseLevelAssets assets;
-    private float YDrawOffset = 60;
+    private float YDrawOffset = 100;
     private float XDrawOffset = 60;
     private float pillPadding = 3;
 
     public PillHolder(BaseLevelAssets baseLevelAssets) {
         assets = baseLevelAssets;
-
     }
 
     public void draw(SpriteBatch batch) {
