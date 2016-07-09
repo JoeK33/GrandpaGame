@@ -28,6 +28,7 @@ public class GameHUD {
     private DrinkButton drinkButton;
     private EatButton eatButton;
     private MedicineBottleButton medicineBottleButton;
+    private PrescriptionButton prescriptionButton;
     private Grandpa grandpa;
 
     public GameHUD(BaseLevelAssets assets, Grandpa grandpa, GameScreen gameScreen, Level level) {
@@ -39,7 +40,10 @@ public class GameHUD {
 
         drinkButton = new DrinkButton(assets, grandpa);
         eatButton = new EatButton(assets, grandpa);
-        medicineBottleButton = new MedicineBottleButton(assets, grandpa, level);
+        medicineBottleButton = new MedicineBottleButton(assets, level);
+        prescriptionButton = new PrescriptionButton(assets, level);
+
+        table.setDebug(true);
 
         healthBar = new HealthBar(assets);
         healthBar.setWidth(200);
@@ -48,7 +52,8 @@ public class GameHUD {
         table.row();
         table.add(drinkButton).size(90, 90).bottom().width(100);
         table.add(eatButton).size(90, 90).bottom().left().padLeft(-5).width(100).expandX();
-        table.add(medicineBottleButton).size(90, 90).bottom().right().width(100).expandX();
+        table.add(prescriptionButton).size(90, 90).bottom().right().padRight(-5).width(100).expandX();
+        table.add(medicineBottleButton).size(90, 90).bottom().right().width(100);
         stage.addActor(table);
         table.pack();
 

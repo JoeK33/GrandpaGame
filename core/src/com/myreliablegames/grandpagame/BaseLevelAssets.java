@@ -21,6 +21,9 @@ public class BaseLevelAssets {
     public Texture pillBottleButtonUp = new Texture(Gdx.files.internal("pillbuttonup.png"));
     public Texture pillBottleButtonDown = new Texture(Gdx.files.internal("pillbuttondown.png"));
 
+    public Texture prescriptionButtonUp = new Texture(Gdx.files.internal("prescriptionbuttonup.png"));
+    public Texture prescriptionButtonDown = new Texture(Gdx.files.internal("prescriptionbuttondown.png"));
+
 
 
     public BaseLevelAssets() {

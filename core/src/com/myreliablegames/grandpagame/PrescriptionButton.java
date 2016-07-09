@@ -9,15 +9,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 /**
  * Created by Joe on 7/8/2016.
  */
-public class MedicineBottleButton extends Button {
-    public MedicineBottleButton(BaseLevelAssets assets, final Level level) {
-        super(new TextureRegionDrawable(new TextureRegion(assets.pillBottleButtonUp)),
-                new TextureRegionDrawable(new TextureRegion(assets.pillBottleButtonDown)));
+public class PrescriptionButton extends Button {
+    public PrescriptionButton(BaseLevelAssets assets, final Level level) {
+        super(new TextureRegionDrawable(new TextureRegion(assets.prescriptionButtonUp)),
+                new TextureRegionDrawable(new TextureRegion(assets.prescriptionButtonDown)));
 
         this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                level.openMedicineCabinet();
+                level.showPrescriptionScreen();
             }
         });
     }

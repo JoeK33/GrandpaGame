@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.MedicineCabinetScreen;
+import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
 
 /**
  * Created by Joe on 7/5/2016.
@@ -19,6 +20,7 @@ public abstract class Level {
     GameHUD gameHUD;
     GameScreen gameScreen;
     MedicineCabinetScreen medicineCabinetScreen;
+    PrescriptionScreen prescriptionScreen;
     GrandpaGame game;
     InputMultiplexer multiplexer;
 
@@ -26,6 +28,7 @@ public abstract class Level {
         this.game = game;
         this.gameScreen = gameScreen;
         this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
+        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
         baseLevelAssets = new BaseLevelAssets();
         pillHolder = new PillHolder(baseLevelAssets);
         paused = false;
@@ -57,6 +60,8 @@ public abstract class Level {
         game.setScreen(medicineCabinetScreen);
     }
 
+    public void showPrescriptionScreen() {game.setScreen(prescriptionScreen);}
+
     public void dispose() {
         baseLevelAssets.dispose();
     }
@@ -72,11 +77,7 @@ public abstract class Level {
     }
 
     public void pauseToggle() {
-        if (paused) {
-            paused = false;
-        } else {
-            paused = true;
-        }
+        paused = !paused;
     }
 
     public boolean isPaused() {

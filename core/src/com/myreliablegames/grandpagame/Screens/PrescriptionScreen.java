@@ -9,21 +9,21 @@ import com.myreliablegames.grandpagame.GrandpaGame;
 /**
  * Created by Joe on 7/8/2016.
  */
-public class MedicineCabinetScreen extends BaseScreen implements InputProcessor {
+public class PrescriptionScreen extends BaseScreen implements InputProcessor {
 
     private GameScreen gameScreen;
 
-    public MedicineCabinetScreen(GrandpaGame game, GameScreen gameScreen) {
+    public PrescriptionScreen(GrandpaGame game, GameScreen gameScreen) {
         super(game);
         this.gameScreen = gameScreen;
     }
 
     public void render(float delta) {
         super.render(delta);
-        Gdx.gl.glClearColor(1, 0, 1, 1);
+        Gdx.gl.glClearColor(1, .5f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        font.draw(batch, "Medicine cabinet", 0, Constants.WORLD_HEIGHT);
+        font.draw(batch, "Prescription", 0, Constants.WORLD_HEIGHT);
         font.draw(batch, "Click to go back", 0, Constants.WORLD_HEIGHT - 50);
         batch.end();
     }

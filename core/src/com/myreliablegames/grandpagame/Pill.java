@@ -25,18 +25,13 @@ public class Pill {
         if (isActive) {
             batch.draw(pillTexture, position.x, position.y);
         }
-
     }
 
     public boolean touched(Vector2 touchPosition) {
 
         if (isActive) {
-            if (touchPosition.x > position.x && touchPosition.x < (position.x + Constants.PILL_SIZE) &&
-                    touchPosition.y > position.y && touchPosition.y < position.y + Constants.PILL_SIZE) {
-                return true;
-            } else {
-                return false;
-            }
+            return (touchPosition.x > position.x && touchPosition.x < (position.x + Constants.PILL_SIZE) &&
+                    touchPosition.y > position.y && touchPosition.y < position.y + Constants.PILL_SIZE);
         } else {
             return false;
         }
