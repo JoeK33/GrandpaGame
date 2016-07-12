@@ -1,9 +1,9 @@
 package com.myreliablegames.grandpagame;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.Random;
 
 /**
  * Created by Joe on 7/5/2016.
@@ -13,16 +13,14 @@ public class Pill {
     private Vector2 position;
     private boolean isActive;
     private PillDescription pillDescription;
+    private int dropHeight;
+    private final int FALL_SPEED = 300;
+    private float stateTime = 0;
 
-    public Pill(Vector2 position, PillDescription pillDescription) {
-        this.position = position;
+    public Pill(PillDescription pillDescription, Random rand) {
         isActive = true;
         this.pillDescription = pillDescription;
-    }
-
-    public Pill(PillDescription pillDescription) {
-        isActive = true;
-        this.pillDescription = pillDescription;
+        dropHeight = Constants.WORLD_HEIGHT + (rand.nextInt(Constants.WORLD_HEIGHT));
     }
 
     public PillDescription getPillDescription() {
@@ -31,7 +29,18 @@ public class Pill {
 
     public void draw(SpriteBatch batch) {
         if (isActive) {
-            batch.draw(pillDescription.getTexture(), position.x, position.y);
+            batch.draw(pillDescription.getTextureRegion(), position.x, position.y + dropHeight);
+            batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x, position.y + dropHeight);
+        }
+    }
+
+    public void update(float delta) {
+        stateTime += delta;
+
+        if (dropHeight > 0) {
+            dropHeight -= (FALL_SPEED * delta);
+        } else {
+            dropHeight = 0;
         }
     }
 
@@ -43,7 +52,7 @@ public class Pill {
 
         if (isActive) {
             return (touchPosition.x > position.x && touchPosition.x < (position.x + Constants.PILL_SIZE) &&
-                    touchPosition.y > position.y && touchPosition.y < position.y + Constants.PILL_SIZE);
+                    touchPosition.y > position.y + dropHeight && touchPosition.y < position.y + dropHeight + Constants.PILL_SIZE);
         } else {
             return false;
         }
@@ -56,4 +65,5 @@ public class Pill {
     public int getHealthValue() {
         return this.pillDescription.getHealthValue();
     }
+
 }

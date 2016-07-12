@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Joe on 7/5/2016.
@@ -11,9 +13,10 @@ import com.badlogic.gdx.math.Vector2;
 public class PillManager {
 
     private Pill[][] pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
+    private ArrayList<Pill> listOfPills = new ArrayList<Pill>();
     private BaseLevelAssets assets;
     private float YDrawOffset = 100;
-    private float XDrawOffset = 48;
+    private float XDrawOffset = 28;
     private float pillPadding = 3;
     private PillFactory pillFactory;
 
@@ -22,12 +25,8 @@ public class PillManager {
     }
 
     public void draw(SpriteBatch batch) {
-        for (int pillX = 0; pillX < Constants.PILLS_WIDE - 1; pillX++) {
-            for (int pillY = 0; pillY < Constants.PILLS_HIGH - 1; pillY++) {
-                if (pills[pillX][pillY] != null) {
-                    pills[pillX][pillY].draw(batch);
-                }
-            }
+        for (Pill p : listOfPills) {
+            p.draw(batch);
         }
     }
 
@@ -51,6 +50,16 @@ public class PillManager {
         }
     }
 
+    public void update(float delta) {
+        for (Pill p : listOfPills) {
+            p.update(delta);
+        }
+
+        Gdx.app.log("Pill Manager",  "last pill: " + listOfPills.get(listOfPills.size()-1).getPillDescription().getDescription());
+
+        listOfPills.get(listOfPills.size()-1).update(delta);
+    }
+
     private boolean addPillRandomly(){
         int xChoice = (int) (Math.random() * Constants.PILLS_WIDE);
         int yChoice = (int) (Math.random() * Constants.PILLS_HIGH);
@@ -64,6 +73,7 @@ public class PillManager {
                     (yChoice * Constants.PILL_SIZE) + YDrawOffset + (pillPadding * yChoice)));
 
             pills[xChoice][yChoice] = pill;
+            listOfPills.add(pill);
 
             return true;
         } else {
@@ -74,14 +84,9 @@ public class PillManager {
 
     // Returns null if no pill to touch.
     public Pill getTouchedPill(Vector2 touchPosition) {
-        for (int pillX = 0; pillX < Constants.PILLS_WIDE - 1; pillX++) {
-            for (int pillY = 0; pillY < Constants.PILLS_HIGH - 1; pillY++) {
-                if (pills[pillX][pillY] != null) {
-                    if(pills[pillX][pillY].touched(touchPosition)) {
-                        return pills[pillX][pillY];
-                    }
-
-                }
+        for (Pill p : listOfPills) {
+            if (p.touched(touchPosition)) {
+                return p;
             }
         }
         return null;

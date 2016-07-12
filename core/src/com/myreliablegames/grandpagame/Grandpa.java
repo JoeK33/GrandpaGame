@@ -7,10 +7,9 @@ import com.badlogic.gdx.Gdx;
  */
 public class Grandpa {
 
-    private int health;
+    private int health = Constants.GRANDPA_HEALTH;
 
     public Grandpa() {
-        health = Constants.GRANDPA_HEALTH;
     }
 
     public void takePill(Pill pill) {

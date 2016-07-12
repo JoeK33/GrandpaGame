@@ -14,14 +14,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  */
 public class DrinkButton extends Button {
 
-    public DrinkButton(BaseLevelAssets assets, final Grandpa grandpa) {
+    public DrinkButton(BaseLevelAssets assets, final Grandpa grandpa, final Level level) {
         super(new TextureRegionDrawable(new TextureRegion(assets.drinkButtonUp)),
                 new TextureRegionDrawable(new TextureRegion(assets.drinkButtonDown)));
 
         this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                grandpa.drink();
+                if (!level.isPaused()) {
+                    grandpa.drink();
+                }
             }
         });
     }

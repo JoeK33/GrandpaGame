@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.myreliablegames.grandpagame.BaseLevelAssets;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.GrandpaGame;
 import com.myreliablegames.grandpagame.Level;
@@ -18,11 +19,14 @@ public class GameScreen extends BaseScreen implements InputProcessor {
 
     private GrandpaGame.LevelNumber levelNumber;
     private Level level;
+    private BaseLevelAssets baseLevelAssets;
 
     public GameScreen(GrandpaGame game, GrandpaGame.LevelNumber levelNumber) {
         super(game);
         this.levelNumber = levelNumber;
-        level = LevelFactory.getLevel(levelNumber, this, game);
+        baseLevelAssets = new BaseLevelAssets();
+        level = LevelFactory.getLevel(levelNumber, this, game, baseLevelAssets);
+
     }
 
 
@@ -48,6 +52,7 @@ public class GameScreen extends BaseScreen implements InputProcessor {
 
     public void dispose() {
         batch.dispose();
+        baseLevelAssets.dispose();
     }
 
     @Override

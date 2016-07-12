@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.MedicineCabinetScreen;
 import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
@@ -24,16 +25,19 @@ public abstract class Level {
     GrandpaGame game;
     InputMultiplexer multiplexer;
 
-    public Level(GameScreen gameScreen, GrandpaGame game) {
+    public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         this.game = game;
         this.gameScreen = gameScreen;
         this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
         this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
-        baseLevelAssets = new BaseLevelAssets();
+        baseLevelAssets = assets;
         pillManager = new PillManager(baseLevelAssets);
         paused = false;
         grandpa = new Grandpa();
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
+
+        // Remove input processor so players can not change levels while pills are falling.
+        Gdx.input.setInputProcessor(null);
 
         // Combine the input from the UI and the game screen and process them together.
         multiplexer = new InputMultiplexer();
@@ -52,8 +56,9 @@ public abstract class Level {
     }
 
     public void update(float delta) {
-        gameHUD.update(delta);
-        grandpa.update(delta);
+            gameHUD.update(delta);
+            grandpa.update(delta);
+            pillManager.update(delta);
     }
 
     public void openMedicineCabinet() {

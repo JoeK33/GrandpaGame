@@ -17,7 +17,9 @@ public class PrescriptionButton extends Button {
         this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                level.showPrescriptionScreen();
+                if (!level.isPaused()) {
+                    level.showPrescriptionScreen();
+                }
             }
         });
     }

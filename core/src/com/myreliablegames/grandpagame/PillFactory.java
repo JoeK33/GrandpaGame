@@ -2,6 +2,7 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.ArrayList;
@@ -14,9 +15,10 @@ public class PillFactory {
 
     private BaseLevelAssets assets;
     private ArrayList<DrugName> unusedDrugNames;
-    private ArrayList<Texture> unusedPillTextures;
+    private ArrayList<TextureRegion> unusedPillTextures;
     private ArrayList<Pill> pills;
     private final int PILL_HEALTH_VALUE = -15;
+    private Random rand = new Random(TimeUtils.nanoTime());
 
     public PillFactory(BaseLevelAssets assets, int numberOfPillTypes) {
         this.assets = assets;
@@ -30,10 +32,18 @@ public class PillFactory {
     }
 
     private Pill makePill(int healthValue) {
-        Texture pillTexture = getUnusedTexture();
+        TextureRegion pillTexture = getUnusedTexture();
         String pillDescriptionString = assets.pillAssets.getTextureDescription(pillTexture);
-        PillDescription pillDescription = new PillDescription(pillTexture, pillDescriptionString, healthValue, getUnusedDrugName());
-        return new Pill(pillDescription);
+
+        PillDescription pillDescription = new PillDescription(
+                pillTexture,
+                pillDescriptionString,
+                healthValue,
+                getUnusedDrugName(),
+                assets.pillAssets.getPillHighlight(assets.pillAssets.getPillShape(pillTexture))
+        );
+
+        return new Pill(pillDescription, rand);
     }
 
     public Pill getPill() {
@@ -42,12 +52,12 @@ public class PillFactory {
     }
 
     public Pill copyPill(Pill pill) {
-        return new Pill(pill.getPillDescription());
+        return new Pill(pill.getPillDescription(), rand);
     }
 
-    private Texture getUnusedTexture() {
+    private TextureRegion getUnusedTexture() {
         int index = (unusedPillTextures.size() == 1 ? 0 : getRandIntInRange(0, unusedPillTextures.size() - 1));
-        Texture tempTexture = unusedPillTextures.get(index);
+        TextureRegion tempTexture = unusedPillTextures.get(index);
         unusedPillTextures.remove(index);
 
         return tempTexture;
@@ -56,7 +66,6 @@ public class PillFactory {
     private DrugName getUnusedDrugName() {
         int index = (unusedDrugNames.size() == 1 ? 0 : getRandIntInRange(0, unusedDrugNames.size() - 1));
         DrugName tempName = unusedDrugNames.get(index);
-        Gdx.app.log("Pill Factory", "Name : " + tempName.toString());
         unusedDrugNames.remove(index);
 
         return tempName;
@@ -65,8 +74,6 @@ public class PillFactory {
     public Pill getPlacebo() {
         return null;
     }
-
-    Random rand = new Random(TimeUtils.nanoTime());
 
     public int getRandIntInRange(int min, int max) {
             return rand.nextInt((max - min) + 1) + min;

@@ -1,0 +1,206 @@
+
+grandpagame.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+drinkbuttondown
+  rotate: false
+  xy: 1, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+drinkbuttonup
+  rotate: false
+  xy: 1, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+eatbuttondown
+  rotate: false
+  xy: 83, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+eatbuttonup
+  rotate: false
+  xy: 1, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+pillbuttondown
+  rotate: false
+  xy: 83, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+pillbuttonup
+  rotate: false
+  xy: 165, 165
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+prescriptionbuttondown
+  rotate: false
+  xy: 83, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+prescriptionbuttonup
+  rotate: false
+  xy: 165, 83
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+
+grandpagame2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pills/circlepillhighlight
+  rotate: false
+  xy: 1, 69
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+pills/ovalpillhighlight
+  rotate: false
+  xy: 1, 35
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+pills/pentagonpillhighlight
+  rotate: false
+  xy: 163, 69
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+pills/squarepillhighlight
+  rotate: false
+  xy: 1, 1
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+pills/trianglepillhighlight
+  rotate: false
+  xy: 163, 35
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+pills/pill1
+  rotate: false
+  xy: 325, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill10
+  rotate: false
+  xy: 163, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill11
+  rotate: false
+  xy: 325, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill12
+  rotate: false
+  xy: 359, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill13
+  rotate: false
+  xy: 197, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill14
+  rotate: false
+  xy: 359, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill15
+  rotate: false
+  xy: 393, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill2
+  rotate: false
+  xy: 231, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill3
+  rotate: false
+  xy: 393, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill4
+  rotate: false
+  xy: 427, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill5
+  rotate: false
+  xy: 265, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill6
+  rotate: false
+  xy: 427, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill7
+  rotate: false
+  xy: 461, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill8
+  rotate: false
+  xy: 299, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+pills/pill9
+  rotate: false
+  xy: 461, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

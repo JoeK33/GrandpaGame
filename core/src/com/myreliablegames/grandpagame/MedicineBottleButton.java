@@ -17,7 +17,9 @@ public class MedicineBottleButton extends Button {
         this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                level.openMedicineCabinet();
+                if (!level.isPaused()) {
+                    level.openMedicineCabinet();
+                }
             }
         });
     }

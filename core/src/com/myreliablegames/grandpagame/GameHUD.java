@@ -23,6 +23,7 @@ import com.myreliablegames.grandpagame.Screens.GameScreen;
 public class GameHUD {
 
     private Stage stage;
+    private Level level;
     private Table table;
     private HealthBar healthBar;
     private DrinkButton drinkButton;
@@ -33,13 +34,14 @@ public class GameHUD {
 
     public GameHUD(BaseLevelAssets assets, Grandpa grandpa, GameScreen gameScreen, Level level) {
         this.grandpa = grandpa;
+        this.level = level;
         stage = new Stage(gameScreen.getViewport());
         table = new Table();
         table.setFillParent(true);
         table.defaults().expandY().pad(10);
 
-        drinkButton = new DrinkButton(assets, grandpa);
-        eatButton = new EatButton(assets, grandpa);
+        drinkButton = new DrinkButton(assets, grandpa, level);
+        eatButton = new EatButton(assets, grandpa, level);
         medicineBottleButton = new MedicineBottleButton(assets, level);
         prescriptionButton = new PrescriptionButton(assets, level);
 
@@ -48,10 +50,10 @@ public class GameHUD {
         healthBar.setHeight(30);
         table.add(healthBar).expandX().top().right().colspan(4).pad(10);
         table.row();
-        table.add(drinkButton).size(90, 90).bottom().width(100);
-        table.add(eatButton).size(90, 90).bottom().left().padLeft(-5).width(100).expandX();
-        table.add(prescriptionButton).size(90, 90).bottom().right().padRight(-5).width(100).expandX();
-        table.add(medicineBottleButton).size(90, 90).bottom().right().width(100);
+        table.add(drinkButton).size(70, 70).bottom().width(75);
+        table.add(eatButton).size(70, 70).bottom().left().padLeft(-5).width(75).expandX();
+        table.add(prescriptionButton).size(70, 70).bottom().right().padRight(-5).width(75).expandX();
+        table.add(medicineBottleButton).size(70, 70).bottom().right().width(75);
         stage.addActor(table);
         table.pack();
 
@@ -66,8 +68,8 @@ public class GameHUD {
     }
 
     public void update(float delta) {
-        stage.act(delta);
-        healthBar.setHealth(grandpa.getHealth());
+            stage.act(delta);
+            healthBar.setHealth(grandpa.getHealth());
     }
 
     public void dispose() {

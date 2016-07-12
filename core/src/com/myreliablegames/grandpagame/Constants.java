@@ -8,7 +8,7 @@ public class Constants {
     public static final int WORLD_HEIGHT = 324;
     public static final int WORLD_WIDTH = 576;
     public static final int PILLS_WIDE = 15;
-    public static final int PILLS_HIGH = 6;
+    public static final int PILLS_HIGH = 5;
 
     public static final int PILL_SIZE = 32;
 

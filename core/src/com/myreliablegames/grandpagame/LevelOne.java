@@ -8,9 +8,9 @@ import com.myreliablegames.grandpagame.Screens.GameScreen;
  */
 public class LevelOne extends Level {
 
-    public LevelOne(GameScreen gameScreen, GrandpaGame game) {
-        super(gameScreen, game);
-        pillManager.populate(20, 4);
+    public LevelOne(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
+        super(gameScreen, game, assets);
+        pillManager.populate(12, 4);
     }
 
     @Override
