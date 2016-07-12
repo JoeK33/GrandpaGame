@@ -43,8 +43,6 @@ public class GameHUD {
         medicineBottleButton = new MedicineBottleButton(assets, level);
         prescriptionButton = new PrescriptionButton(assets, level);
 
-        table.setDebug(true);
-
         healthBar = new HealthBar(assets);
         healthBar.setWidth(200);
         healthBar.setHeight(30);

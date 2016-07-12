@@ -8,9 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class BaseLevelAssets {
 
-    public Texture Pill1Texture = new Texture(Gdx.files.internal("pill1.png"));
-    public Texture Pill2Texture = new Texture(Gdx.files.internal("pill2.png"));
-    public Texture Pill3Texture = new Texture(Gdx.files.internal("pill3.png"));
+    public PillAssets pillAssets;
 
     public Texture drinkButtonUp = new Texture(Gdx.files.internal("drinkbuttonup.png"));
     public Texture drinkButtonDown = new Texture(Gdx.files.internal("drinkbuttondown.png"));
@@ -24,31 +22,12 @@ public class BaseLevelAssets {
     public Texture prescriptionButtonUp = new Texture(Gdx.files.internal("prescriptionbuttonup.png"));
     public Texture prescriptionButtonDown = new Texture(Gdx.files.internal("prescriptionbuttondown.png"));
 
-
-
     public BaseLevelAssets() {
-
-    }
-
-    public Texture getRandomPillTexture() {
-        int choice = (int)(Math.random() * 3);
-
-        switch(choice) {
-            case 0:
-                return Pill1Texture;
-            case 1:
-                return Pill2Texture;
-            case 2:
-                return Pill3Texture;
-            default:
-                return Pill1Texture;
-        }
+        pillAssets = new PillAssets();
     }
 
     public void dispose() {
-        Pill1Texture.dispose();
-        Pill2Texture.dispose();
-        Pill3Texture.dispose();
+        pillAssets.dispose();
 
         drinkButtonUp.dispose();
         drinkButtonDown.dispose();

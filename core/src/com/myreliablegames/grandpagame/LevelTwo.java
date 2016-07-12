@@ -10,7 +10,7 @@ public class LevelTwo extends Level {
 
     public LevelTwo(GameScreen gameScreen, GrandpaGame game) {
         super(gameScreen, game);
-        pillHolder.populate(25);
+        pillManager.populate(25, 8);
     }
 
     @Override
@@ -21,7 +21,6 @@ public class LevelTwo extends Level {
     @Override
     public void update(float delta) {
         super.update(delta);
-
     }
 
     @Override

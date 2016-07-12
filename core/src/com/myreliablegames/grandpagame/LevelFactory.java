@@ -21,6 +21,15 @@ public class LevelFactory {
             case Three:
                 level = new LevelThree(gameScreen, game);
                 break;
+            case Four:
+                level = new LevelFour(gameScreen, game);
+                break;
+            case Five:
+                level = new LevelFive(gameScreen, game);
+                break;
+            case Six:
+                level = new LevelSix(gameScreen, game);
+                break;
             default:
                 level = new LevelOne(gameScreen, game);
                 break;

@@ -30,9 +30,9 @@ public class LevelSelectButtonHolder {
         Skin skin = new Skin();
         skin.add("default", this.font);
         table = new Table(skin);
-        table.defaults().pad(25).expandX();
+        table.defaults().pad(25);
 
-        Pixmap pixmap = new Pixmap(175, 100, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(155, 100, Pixmap.Format.RGB888);
         skin.add("default", new Texture(pixmap));
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -52,19 +52,19 @@ public class LevelSelectButtonHolder {
         LevelSelectButton button1 = new LevelSelectButton("Lv 1", skin, game, GrandpaGame.LevelNumber.One);
         LevelSelectButton button2 = new LevelSelectButton("Lv 2", skin, game, GrandpaGame.LevelNumber.Two);
         LevelSelectButton button3 = new LevelSelectButton("Lv 3", skin, game, GrandpaGame.LevelNumber.Three);
-        table.add(button1).expandX().expandY().fill().padLeft(10);
-        table.add(button2).expandX().expandY().fill();
-        table.add(button3).expandX().expandY().fill().padRight(10);
+        table.add(button1).expandX().expandY().padLeft(10);
+        table.add(button2).expandX().expandY();
+        table.add(button3).expandX().expandY().padRight(10);
         table.row();
 
         LevelSelectButton button4 = new LevelSelectButton("Lv 4", skin, game, GrandpaGame.LevelNumber.Four);
         LevelSelectButton button5 = new LevelSelectButton("Lv 5", skin, game, GrandpaGame.LevelNumber.Five);
         LevelSelectButton button6 = new LevelSelectButton("Lv 6", skin, game, GrandpaGame.LevelNumber.Six);
-        table.add(button4).expandX().expandY().fill().padLeft(10);;
+        table.add(button4).expandX().expandY().fill().padLeft(10);
         table.add(button5).expandX().expandY().fill();
         table.add(button6).expandX().expandY().fill().padRight(10);
 
-        table.center().setFillParent(true);
+        table.setFillParent(true);
         stage.addActor(table);
         table.pack();
     }

@@ -14,7 +14,7 @@ import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
 public abstract class Level {
 
     BaseLevelAssets baseLevelAssets;
-    PillHolder pillHolder;
+    PillManager pillManager;
     Grandpa grandpa;
     boolean paused;
     GameHUD gameHUD;
@@ -30,7 +30,7 @@ public abstract class Level {
         this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
         this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
         baseLevelAssets = new BaseLevelAssets();
-        pillHolder = new PillHolder(baseLevelAssets);
+        pillManager = new PillManager(baseLevelAssets);
         paused = false;
         grandpa = new Grandpa();
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
@@ -47,7 +47,7 @@ public abstract class Level {
     }
 
     public void render(SpriteBatch batch) {
-        pillHolder.draw(batch);
+        pillManager.draw(batch);
         gameHUD.draw(batch);
     }
 
@@ -68,7 +68,7 @@ public abstract class Level {
 
     public void touchDown(Vector2 touchPos) {
         if (!paused) {
-            Pill pill = pillHolder.getTouchedPill(touchPos);
+            Pill pill = pillManager.getTouchedPill(touchPos);
             if (pill != null) {
                 grandpa.takePill(pill);
                 pill.setActive(false);

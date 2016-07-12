@@ -1,5 +1,6 @@
 package com.myreliablegames.grandpagame;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -9,22 +10,33 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Pill {
 
-    private Texture pillTexture;
     private Vector2 position;
     private boolean isActive;
-    private int healthValue;
+    private PillDescription pillDescription;
 
-    public Pill(BaseLevelAssets assets, Vector2 position, int healthValue) {
-        pillTexture = assets.getRandomPillTexture();
+    public Pill(Vector2 position, PillDescription pillDescription) {
         this.position = position;
         isActive = true;
-        this.healthValue = healthValue;
+        this.pillDescription = pillDescription;
+    }
+
+    public Pill(PillDescription pillDescription) {
+        isActive = true;
+        this.pillDescription = pillDescription;
+    }
+
+    public PillDescription getPillDescription() {
+        return pillDescription;
     }
 
     public void draw(SpriteBatch batch) {
         if (isActive) {
-            batch.draw(pillTexture, position.x, position.y);
+            batch.draw(pillDescription.getTexture(), position.x, position.y);
         }
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 
     public boolean touched(Vector2 touchPosition) {
@@ -42,6 +54,6 @@ public class Pill {
     }
 
     public int getHealthValue() {
-        return this.healthValue;
+        return this.pillDescription.getHealthValue();
     }
 }

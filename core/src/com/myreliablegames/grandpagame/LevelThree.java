@@ -9,7 +9,7 @@ import com.myreliablegames.grandpagame.Screens.GameScreen;
 public class LevelThree extends Level {
     public LevelThree(GameScreen gameScreen, GrandpaGame game) {
         super(gameScreen, game);
-        pillHolder.populate(50);
+        pillManager.populate(50, 12);
     }
 
     @Override
@@ -20,7 +20,6 @@ public class LevelThree extends Level {
     @Override
     public void update(float delta) {
         super.update(delta);
-
     }
 
     @Override
