@@ -28,24 +28,27 @@ public class PillManager {
         for (Pill p : listOfPills) {
             p.draw(batch);
         }
+
+        // Drawing this makes all the pills draw properly.  Why?  I have no idea.
+        batch.draw(assets.drinkButtonUp, -Constants.WORLD_WIDTH, -Constants.WORLD_HEIGHT);
     }
 
     public void populate(int numberOfPills, int numberOfPillTypes) {
 
         pillFactory = new PillFactory(assets, numberOfPillTypes);
 
-        if (numberOfPills > (Constants.PILLS_HIGH * Constants.PILLS_WIDE)){
+        if (numberOfPills > (Constants.PILLS_HIGH * Constants.PILLS_WIDE)) {
             numberOfPills = (Constants.PILLS_HIGH * Constants.PILLS_WIDE);
         }
-        Gdx.app.log("Pill Manager", "Populating!");
+       // Gdx.app.log("Pill Manager", "Populating!");
         int pillsAdded = 0;
-        while (pillsAdded < numberOfPills && numberOfPills > 0){
+        while (pillsAdded < numberOfPills && numberOfPills > 0) {
             // Randomly try to add pills until you have added enough.
             if (addPillRandomly()) {
                 pillsAdded++;
-                Gdx.app.log("Pill Manager", "Pills added: " + Integer.toString(pillsAdded));
+            //    Gdx.app.log("Pill Manager", "Pills added: " + Integer.toString(pillsAdded));
             } else {
-                Gdx.app.log("Pill Manager", "Pill slot already filled!");
+            //    Gdx.app.log("Pill Manager", "Pill slot already filled!");
             }
         }
     }
@@ -54,13 +57,9 @@ public class PillManager {
         for (Pill p : listOfPills) {
             p.update(delta);
         }
-
-        Gdx.app.log("Pill Manager",  "last pill: " + listOfPills.get(listOfPills.size()-1).getPillDescription().getDescription());
-
-        listOfPills.get(listOfPills.size()-1).update(delta);
     }
 
-    private boolean addPillRandomly(){
+    private boolean addPillRandomly() {
         int xChoice = (int) (Math.random() * Constants.PILLS_WIDE);
         int yChoice = (int) (Math.random() * Constants.PILLS_HIGH);
 
@@ -93,6 +92,7 @@ public class PillManager {
     }
 
     public void clear() {
-       pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
+        pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
+        listOfPills.clear();
     }
 }

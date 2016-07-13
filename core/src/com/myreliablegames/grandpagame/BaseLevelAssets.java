@@ -1,5 +1,6 @@
 package com.myreliablegames.grandpagame;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class BaseLevelAssets {
 
     public PillAssets pillAssets;
-    private AssetManager assetManager;
+    private AssetManager assetManager = new AssetManager();
 
     public final TextureRegion drinkButtonUp;
     public final TextureRegion drinkButtonDown;
@@ -28,13 +29,10 @@ public class BaseLevelAssets {
     public final TextureRegion prescriptionButtonDown;
 
     public BaseLevelAssets() {
-
-        assetManager = new AssetManager();
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
         assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get("gameassets/grandpagame.pack");
-
 
         drinkButtonUp = atlas.findRegion("drinkbuttonup");
         drinkButtonDown = atlas.findRegion("drinkbuttondown");
@@ -85,7 +83,7 @@ public class BaseLevelAssets {
 
         public PillAssets(TextureAtlas atlas) {
 
-            pill1Texture = atlas.findRegion("drinkbuttonup");
+            pill1Texture = atlas.findRegion("pills/pill1");
             pill2Texture = atlas.findRegion("pills/pill2");
             pill3Texture = atlas.findRegion("pills/pill3");
             pill4Texture = atlas.findRegion("pills/pill4");
