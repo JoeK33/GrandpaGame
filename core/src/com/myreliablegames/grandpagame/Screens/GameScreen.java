@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
@@ -26,7 +27,6 @@ public class GameScreen extends BaseScreen implements InputProcessor {
         this.levelNumber = levelNumber;
         baseLevelAssets = new BaseLevelAssets();
         level = LevelFactory.getLevel(levelNumber, this, game, baseLevelAssets);
-
     }
 
 
@@ -45,9 +45,9 @@ public class GameScreen extends BaseScreen implements InputProcessor {
             batch.begin();
             font.draw(batch, "     PAUSED \n TOUCH TO CONTINUE", 0, (Constants.WORLD_HEIGHT / 3) * 2);
             batch.end();
+        } else {
+            level.update(delta);
         }
-
-        level.update(delta);
     }
 
     public void dispose() {

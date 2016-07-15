@@ -3,6 +3,8 @@ package com.myreliablegames.grandpagame;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 
+import java.util.ArrayList;
+
 /**
  * Created by Joe on 7/11/2016.
  */
@@ -10,7 +12,8 @@ public class LevelFour extends Level {
 
     public LevelFour(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets);
-        pillManager.populate(40, 12);
+        pillManager.populate(40, 12, false);
+
     }
 
     @Override

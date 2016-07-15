@@ -17,21 +17,21 @@ public class PillFactory {
     private ArrayList<DrugName> unusedDrugNames;
     private ArrayList<TextureRegion> unusedPillTextures;
     private ArrayList<Pill> pills;
-    private final int PILL_HEALTH_VALUE = -15;
+    private final int PILL_HEALTH_VALUE = 25;
     private Random rand = new Random(TimeUtils.nanoTime());
 
-    public PillFactory(BaseLevelAssets assets, int numberOfPillTypes) {
+    public PillFactory(BaseLevelAssets assets, int numberOfPillTypes, boolean floating) {
         this.assets = assets;
         unusedDrugNames = DrugName.getDrugNameArrayList();
         unusedPillTextures = assets.pillAssets.getPillTextures();
         pills = new ArrayList<Pill>();
 
         for (int i = 0; i < numberOfPillTypes; i++) {
-            pills.add(makePill(PILL_HEALTH_VALUE));
+            pills.add(makePill(PILL_HEALTH_VALUE, floating));
         }
     }
 
-    private Pill makePill(int healthValue) {
+    private Pill makePill(int healthValue, boolean floating) {
         TextureRegion pillTexture = getUnusedTexture();
         String pillDescriptionString = assets.pillAssets.getTextureDescription(pillTexture);
 
@@ -43,7 +43,7 @@ public class PillFactory {
                 assets.pillAssets.getPillHighlight(assets.pillAssets.getPillShape(pillTexture))
         );
 
-        return new Pill(pillDescription, rand);
+        return new Pill(pillDescription, rand, floating);
     }
 
     public Pill getPill() {
@@ -52,7 +52,7 @@ public class PillFactory {
     }
 
     public Pill copyPill(Pill pill) {
-        return new Pill(pill.getPillDescription(), rand);
+        return new Pill(pill.getPillDescription(), rand, pill.isFloating());
     }
 
     private TextureRegion getUnusedTexture() {

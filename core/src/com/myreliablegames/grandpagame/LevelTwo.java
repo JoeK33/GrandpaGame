@@ -10,7 +10,7 @@ public class LevelTwo extends Level {
 
     public LevelTwo(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets);
-        pillManager.populate(20, 8);
+        pillManager.populate(20, 8, true);
     }
 
     @Override

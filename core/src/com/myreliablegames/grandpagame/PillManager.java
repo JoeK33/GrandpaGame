@@ -1,6 +1,5 @@
 package com.myreliablegames.grandpagame;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -14,11 +13,14 @@ public class PillManager {
 
     private Pill[][] pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
     private ArrayList<Pill> listOfPills = new ArrayList<Pill>();
+    private ArrayList<DrugName> uniquePillDrugNames = new ArrayList<DrugName>();
     private BaseLevelAssets assets;
     private float YDrawOffset = 100;
-    private float XDrawOffset = 28;
+    private float XDrawOffset = 76;
     private float pillPadding = 3;
     private PillFactory pillFactory;
+    private boolean doubleVision = false;
+    private float doubleWiggle;
 
     public PillManager(BaseLevelAssets baseLevelAssets) {
         assets = baseLevelAssets;
@@ -29,34 +31,47 @@ public class PillManager {
             p.draw(batch);
         }
 
+        if (doubleVision) {
+            for (Pill p : listOfPills) {
+                p.drawDoubleVision(batch, doubleWiggle);
+            }
+        }
+
         // Drawing this makes all the pills draw properly.  Why?  I have no idea.
         batch.draw(assets.drinkButtonUp, -Constants.WORLD_WIDTH, -Constants.WORLD_HEIGHT);
     }
 
-    public void populate(int numberOfPills, int numberOfPillTypes) {
+    public void populate(int numberOfPills, int numberOfPillTypes, boolean floatingPills) {
 
-        pillFactory = new PillFactory(assets, numberOfPillTypes);
+        pillFactory = new PillFactory(assets, numberOfPillTypes, floatingPills);
 
         if (numberOfPills > (Constants.PILLS_HIGH * Constants.PILLS_WIDE)) {
             numberOfPills = (Constants.PILLS_HIGH * Constants.PILLS_WIDE);
         }
-       // Gdx.app.log("Pill Manager", "Populating!");
+        // Gdx.app.log("Pill Manager", "Populating!");
         int pillsAdded = 0;
         while (pillsAdded < numberOfPills && numberOfPills > 0) {
             // Randomly try to add pills until you have added enough.
             if (addPillRandomly()) {
                 pillsAdded++;
-            //    Gdx.app.log("Pill Manager", "Pills added: " + Integer.toString(pillsAdded));
+                //    Gdx.app.log("Pill Manager", "Pills added: " + Integer.toString(pillsAdded));
             } else {
-            //    Gdx.app.log("Pill Manager", "Pill slot already filled!");
+                //    Gdx.app.log("Pill Manager", "Pill slot already filled!");
             }
         }
+    }
+
+    public void setDoubleVision(boolean doubleVision) {
+        this.doubleVision = doubleVision;
     }
 
     public void update(float delta) {
         for (Pill p : listOfPills) {
             p.update(delta);
         }
+
+        // Jiggle the double vision pills around a little.
+        doubleWiggle = (float) ((Math.random() * 4) - 2);
     }
 
     private boolean addPillRandomly() {
@@ -73,12 +88,19 @@ public class PillManager {
 
             pills[xChoice][yChoice] = pill;
             listOfPills.add(pill);
+            if (!uniquePillDrugNames.contains(pill.getPillDescription().getDrugName())) {
+                uniquePillDrugNames.add(pill.getPillDescription().getDrugName());
+            }
 
             return true;
         } else {
             return false;
 
         }
+    }
+
+    public ArrayList<DrugName> getPillsInPlay() {
+        return uniquePillDrugNames;
     }
 
     // Returns null if no pill to touch.
@@ -94,5 +116,19 @@ public class PillManager {
     public void clear() {
         pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
         listOfPills.clear();
+        uniquePillDrugNames.clear();
     }
+
+    public ArrayList<DrugName> getActiveDrugs() {
+        ArrayList<DrugName> remainingDrugs = new ArrayList<DrugName>();
+
+        for (Pill p : listOfPills) {
+
+            if (p.isActive() && !remainingDrugs.contains(p.getPillDescription().getDrugName())) {
+                remainingDrugs.add(p.getPillDescription().getDrugName());
+            }
+        }
+        return remainingDrugs;
+    }
+
 }

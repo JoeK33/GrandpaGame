@@ -16,11 +16,16 @@ public class Pill {
     private int dropHeight;
     private final int FALL_SPEED = 300;
     private float stateTime = 0;
+    private boolean floating = false;
+    private final float BOB_SPEED = 3;
+    private float floatOffset = 0;
+    private float wiggleDegrees = 0;
 
-    public Pill(PillDescription pillDescription, Random rand) {
+    public Pill(PillDescription pillDescription, Random rand, boolean floating) {
         isActive = true;
         this.pillDescription = pillDescription;
         dropHeight = Constants.WORLD_HEIGHT + (rand.nextInt(Constants.WORLD_HEIGHT));
+        this.floating = floating;
     }
 
     public PillDescription getPillDescription() {
@@ -29,9 +34,25 @@ public class Pill {
 
     public void draw(SpriteBatch batch) {
         if (isActive) {
-            batch.draw(pillDescription.getTextureRegion(), position.x, position.y + dropHeight);
-            batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x, position.y + dropHeight);
+            batch.draw(pillDescription.getTextureRegion(), position.x, position.y + dropHeight + floatOffset);
+            batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x, position.y + dropHeight + floatOffset);
         }
+    }
+
+    public void drawDoubleVision(SpriteBatch batch, float doubleWiggle) {
+
+        if (isActive) {
+            batch.draw(pillDescription.getTextureRegion(), position.x - Constants.PILL_SIZE / 4 + doubleWiggle, position.y + dropHeight + floatOffset + Constants.PILL_SIZE / 2 + doubleWiggle);
+            batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x - Constants.PILL_SIZE / 4 + doubleWiggle, position.y + dropHeight + floatOffset + Constants.PILL_SIZE / 2 + doubleWiggle);
+        }
+    }
+
+    public void setFloating(boolean floating) {
+        this.floating = floating;
+    }
+
+    public boolean isFloating() {
+        return floating;
     }
 
     public void update(float delta) {
@@ -42,6 +63,16 @@ public class Pill {
         } else {
             dropHeight = 0;
         }
+
+        if (floating && dropHeight == 0) {
+            wiggleDegrees += (BOB_SPEED * delta);
+            floatOffset = (float) (Math.cos(wiggleDegrees) * 2);
+            if (wiggleDegrees > 360) {
+                wiggleDegrees = 0;
+            }
+
+        }
+
     }
 
     public void setPosition(Vector2 position) {
@@ -60,6 +91,10 @@ public class Pill {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public int getHealthValue() {

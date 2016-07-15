@@ -9,7 +9,7 @@ import com.myreliablegames.grandpagame.Screens.GameScreen;
 public class LevelSix extends Level {
     public LevelSix(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets);
-        pillManager.populate(60, 15);
+        pillManager.populate(60, 15, false);
     }
 
     @Override

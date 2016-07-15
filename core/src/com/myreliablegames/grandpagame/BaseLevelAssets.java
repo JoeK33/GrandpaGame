@@ -2,6 +2,7 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class BaseLevelAssets {
 
     public PillAssets pillAssets;
+    public DiseaseSounds diseaseSounds;
     private AssetManager assetManager = new AssetManager();
 
     public final TextureRegion drinkButtonUp;
@@ -30,6 +32,7 @@ public class BaseLevelAssets {
 
     public BaseLevelAssets() {
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
+        assetManager.load("sounds/ringing.wav", Sound.class);
         assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get("gameassets/grandpagame.pack");
@@ -47,6 +50,7 @@ public class BaseLevelAssets {
         prescriptionButtonDown = atlas.findRegion("prescriptionbuttondown");
 
         pillAssets = new PillAssets(atlas);
+        diseaseSounds = new DiseaseSounds();
 
     }
 
@@ -263,5 +267,16 @@ public class BaseLevelAssets {
                 return ovalPillHighlight;
             }
         }
+    }
+
+    public class DiseaseSounds {
+
+        public final Sound ringingInEars;
+
+        public DiseaseSounds() {
+            ringingInEars = assetManager.get("sounds/ringing.wav");
+
+        }
+
     }
 }

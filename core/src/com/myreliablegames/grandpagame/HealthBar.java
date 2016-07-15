@@ -19,6 +19,7 @@ public class HealthBar extends Actor {
     private boolean jiggling;
 
     public HealthBar(BaseLevelAssets assets) {
+        // TODO Real assets here
         TextureAtlas skinAtlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
         NinePatch loadingBarBackgroundPatch = new NinePatch(skinAtlas.findRegion("default-round"), 5, 5, 4, 4);
         NinePatch loadingBarPatch = new NinePatch(skinAtlas.findRegion("default-round-down"), 5, 5, 4, 4);
@@ -45,7 +46,12 @@ public class HealthBar extends Actor {
     }
 
     public void setHealth(int health) {
-        if (((float)health / (float)Constants.GRANDPA_HEALTH) < this.health) {
+        if (health > 100) {
+            health = 100;
+        }
+
+        if (((float)health / (float)Constants.GRANDPA_HEALTH) < this.health &&
+                health != 100) {
             jiggle();
         }
         this.health = ((float)health / (float)Constants.GRANDPA_HEALTH);

@@ -7,10 +7,20 @@ public class Constants {
 
     public static final int WORLD_HEIGHT = 324;
     public static final int WORLD_WIDTH = 576;
-    public static final int PILLS_WIDE = 15;
+    public static final int PILLS_WIDE = 12;
     public static final int PILLS_HIGH = 5;
 
     public static final int PILL_SIZE = 32;
 
     public static final int GRANDPA_HEALTH = 100;
+
+    public static final int COLORBLIND_DAMAGE = 10;
+
+    public static final int RINGING_DAMAGE = 15;
+    public static final int DOUBLE_VISION_DAMAGE = 10;
+
+    // 6 secs
+    public static final long DISEASE_DAMAGE_INTERVAL = 2;
+
+    public static final long DISEASE_SPAWN_INTERVAL = 6;
 }

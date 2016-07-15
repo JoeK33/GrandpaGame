@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
+import com.myreliablegames.grandpagame.Diseases.DiseaseManager;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.MedicineCabinetScreen;
 import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
@@ -24,16 +25,18 @@ public abstract class Level {
     PrescriptionScreen prescriptionScreen;
     GrandpaGame game;
     InputMultiplexer multiplexer;
+    DiseaseManager diseaseManager;
 
     public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         this.game = game;
         this.gameScreen = gameScreen;
         this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
         this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
+
         baseLevelAssets = assets;
         pillManager = new PillManager(baseLevelAssets);
         paused = false;
-        grandpa = new Grandpa();
+        grandpa = new Grandpa(this);
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
 
         // Remove input processor so players can not change levels while pills are falling.
@@ -44,6 +47,7 @@ public abstract class Level {
         multiplexer.addProcessor(gameHUD.getInputProcessor());
         multiplexer.addProcessor(gameScreen);
         Gdx.input.setInputProcessor(multiplexer);
+
     }
 
     public void show() {
@@ -51,11 +55,13 @@ public abstract class Level {
     }
 
     public void render(SpriteBatch batch) {
+        diseaseManager.draw(batch);
         pillManager.draw(batch);
         gameHUD.draw(batch);
     }
 
     public void update(float delta) {
+        diseaseManager.update(delta);
             gameHUD.update(delta);
             grandpa.update(delta);
             pillManager.update(delta);
@@ -91,6 +97,10 @@ public abstract class Level {
 
     public void resize(int width, int height) {
         gameHUD.resize(width, height);
+    }
+
+    public void lose() {
+        Gdx.app.log("Loser", "Game over");
     }
 
 }
