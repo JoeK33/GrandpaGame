@@ -23,7 +23,7 @@ public class DiseaseFactory {
 
     public Disease getDisease(DiseaseName name) {
         if (name == DiseaseName.Colorblind) {
-            Colorblind colorblind = new Colorblind(possibleCures.get(0));
+            Colorblind colorblind = new Colorblind(possibleCures.get(0), pillManager);
             possibleCures.remove(0);
             return colorblind;
         } else if (name == DiseaseName.RingingInEars) {
@@ -34,7 +34,7 @@ public class DiseaseFactory {
             DoubleVision doubleVision = new DoubleVision(possibleCures.get(0), pillManager);
             possibleCures.remove(0);
             return doubleVision;
-        } else {  return new Colorblind(DrugName.Anipine);}
+        } else {  return new Colorblind(DrugName.Anipine, pillManager);}
     }
 
 

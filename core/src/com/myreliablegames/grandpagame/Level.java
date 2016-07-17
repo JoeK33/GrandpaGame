@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Timer;
 import com.myreliablegames.grandpagame.Diseases.DiseaseManager;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.MedicineCabinetScreen;
@@ -62,9 +61,9 @@ public abstract class Level {
 
     public void update(float delta) {
         diseaseManager.update(delta);
-            gameHUD.update(delta);
-            grandpa.update(delta);
-            pillManager.update(delta);
+        gameHUD.update(delta);
+        grandpa.update(delta);
+        pillManager.update(delta);
     }
 
     public void openMedicineCabinet() {
