@@ -21,12 +21,27 @@ public class PillManager {
     private PillFactory pillFactory;
     private boolean doubleVision = false;
     private float doubleWiggle;
+    private float greyscale = 0.0f;
+    private boolean blurryVision;
 
     public PillManager(BaseLevelAssets baseLevelAssets) {
         assets = baseLevelAssets;
     }
 
     public void draw(SpriteBatch batch) {
+
+        if (blurryVision) {
+            // TODO: Set offscreen render target A.
+        }
+
+        if (greyscale > 0.0f) {
+            batch.setShader(GreyscaleShader.grayscaleShader);
+            GreyscaleShader.grayscaleShader.setUniformf("u_grayness", greyscale);
+        } else {
+            // Use the default shader.
+            batch.setShader(null);
+        }
+
         for (Pill p : listOfPills) {
             p.draw(batch);
         }
@@ -37,8 +52,17 @@ public class PillManager {
             }
         }
 
-        // Drawing this makes all the pills draw properly.  Why?  I have no idea.
+        // Reset to the default shader.
+        batch.setShader(null);
+
+        // Hack: Drawing this makes all the pills draw properly.  Why?  I have no idea.
         batch.draw(assets.drinkButtonUp, -Constants.WORLD_WIDTH, -Constants.WORLD_HEIGHT);
+
+        if (blurryVision) {
+            // TODO: Blur offscreen render target A in X direction. Output to offscreen render target B.
+            // TODO: Blur offscreen render target B in Y direction. Output to offscreen render target A.
+            // TODO: Copy offscreen render target A to main render target.
+        }
     }
 
     public void populate(int numberOfPills, int numberOfPillTypes, boolean floatingPills) {
@@ -63,6 +87,18 @@ public class PillManager {
 
     public void setDoubleVision(boolean doubleVision) {
         this.doubleVision = doubleVision;
+    }
+
+    public void setBlurryVision(boolean blurryVision) {
+        this.blurryVision = blurryVision;
+    }
+
+    /**
+     * Sets the grayness used to render the pills. A greyscale value that is 1.0 is full grey.
+     * A grey scale value that is <= 0.0 is full color.
+     */
+    public void setGreyscale(float greyscale) {
+        this.greyscale = greyscale;
     }
 
     public void update(float delta) {
@@ -130,5 +166,4 @@ public class PillManager {
         }
         return remainingDrugs;
     }
-
 }

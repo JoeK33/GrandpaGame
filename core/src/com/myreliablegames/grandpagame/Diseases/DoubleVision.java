@@ -12,7 +12,6 @@ public class DoubleVision extends Disease {
 
     private PillManager pillManager;
 
-
     public DoubleVision(DrugName cure, PillManager pillManager) {
         super(new DiseaseDescription(cure, Constants.DOUBLE_VISION_DAMAGE), DiseaseName.RingingInEars);
         this.pillManager = pillManager;

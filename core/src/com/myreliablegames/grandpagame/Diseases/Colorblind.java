@@ -7,6 +7,7 @@ import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.DrugName;
 import com.myreliablegames.grandpagame.Grandpa;
 import com.myreliablegames.grandpagame.GreyscaleShader;
+import com.myreliablegames.grandpagame.PillManager;
 
 /**
  * Created by Joe on 7/14/2016.
@@ -16,15 +17,16 @@ public class Colorblind extends  Disease {
     private float grayness = 0;
     private float blindingSpeed = .5f;
     private boolean isColorblind;
+    private PillManager pillManager;
 
-    public Colorblind(DrugName cure) {
+    public Colorblind(DrugName cure, PillManager pillManager) {
         super(new DiseaseDescription(cure, Constants.COLORBLIND_DAMAGE), DiseaseName.Colorblind);
+        this.pillManager = pillManager;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-       batch.setShader(GreyscaleShader.grayscaleShader);
-        GreyscaleShader.grayscaleShader.setUniformf("u_grayness", grayness);
+        pillManager.setGreyscale(grayness);
     }
 
     @Override
@@ -58,11 +60,11 @@ public class Colorblind extends  Disease {
 
     @Override
     public boolean readyForRemoval() {
-       if (!(grayness > 0) && cured){
-           cured = false;
-           return true;
+        if (!(grayness > 0) && cured){
+            cured = false;
+            return true;
+        }
 
-       }
         return false;
     }
 
