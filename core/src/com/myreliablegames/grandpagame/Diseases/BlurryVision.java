@@ -33,7 +33,7 @@ public class BlurryVision extends Disease {
 
         totalTime += delta;
         float blurryVisionIntensity =
-                currentMaxBlurriness * ((float)ImprovedNoise.noise(0.5f * totalTime, 0, 0) + 0.5f);
+                currentMaxBlurriness * ((float)ImprovedNoise.noise(0.69f * totalTime, 0, 0) + 0.5f);
 
         level.setBlurryVisionIntensity(blurryVisionIntensity);
     }
