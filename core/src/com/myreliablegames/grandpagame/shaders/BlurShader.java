@@ -24,10 +24,10 @@ public class BlurShader extends ShaderProgram {
 
     // TODO: Allow specification of sigma and kernel size. Generate shader code based on this.
     public static BlurShader load() {
-        FileHandle vertexShaderFileHandle = Gdx.files.local("shaders/blur.vs");
+        FileHandle vertexShaderFileHandle = Gdx.files.internal("shaders/blur.vs");
         String vertexShaderText = vertexShaderFileHandle.readString();
 
-        FileHandle pixelShaderFileHandle = Gdx.files.local("shaders/blur.ps");
+        FileHandle pixelShaderFileHandle = Gdx.files.internal("shaders/blur.ps");
         String pixelShaderText = pixelShaderFileHandle.readString();
 
         return new BlurShader(vertexShaderText, pixelShaderText);
