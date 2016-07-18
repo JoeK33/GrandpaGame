@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class LevelFive extends Level {
     public LevelFive(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
-        super(gameScreen, game, assets);
+        super(gameScreen, game, assets, GrandpaGame.LevelNumber.Five);
         pillManager.populate(50, 13, true);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
         levelDiseases.add(DiseaseName.Colorblind);

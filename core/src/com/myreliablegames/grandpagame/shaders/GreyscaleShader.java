@@ -1,4 +1,4 @@
-package com.myreliablegames.grandpagame;
+package com.myreliablegames.grandpagame.shaders;
 
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
  * Created by Joe on 7/14/2016.
  */
 public class GreyscaleShader {
-    static String vertexShader = "attribute vec4 a_position;\n" +
+
+    static String vertexShader =
+            "attribute vec4 a_position;\n" +
             "attribute vec4 a_color;\n" +
             "attribute vec2 a_texCoord0;\n" +
             "\n" +
@@ -21,7 +23,8 @@ public class GreyscaleShader {
             "    gl_Position = u_projTrans * a_position;\n" +
             "}";
 
-    static final String fragmentShader = "#ifdef GL_ES\n" +
+    static final String fragmentShader =
+            "#ifdef GL_ES\n" +
             "    precision mediump float;\n" +
             "#endif\n" +
             "\n" +
@@ -37,11 +40,6 @@ public class GreyscaleShader {
             "  gl_FragColor = vec4(blendedColor.rgb, c.a);\n" +
             "}";
 
-    public static ShaderProgram grayscaleShader = new ShaderProgram(vertexShader,
-            fragmentShader);
-
-    /*
-    batch.begin();
-grayscaleShader.setUniformf("u_grayness", grayness);
-     */
+    // USAGE: grayscaleShader.setUniformf("u_grayness", grayness);
+    public static ShaderProgram grayscaleShader = new ShaderProgram(vertexShader, fragmentShader);
 }

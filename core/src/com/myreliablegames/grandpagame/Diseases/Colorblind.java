@@ -2,11 +2,8 @@ package com.myreliablegames.grandpagame.Diseases;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.DrugName;
-import com.myreliablegames.grandpagame.Grandpa;
-import com.myreliablegames.grandpagame.GreyscaleShader;
 import com.myreliablegames.grandpagame.PillManager;
 
 /**

@@ -1,0 +1,38 @@
+// Adapted from http://www.sunsetlakesoftware.com/2013/10/21/optimizing-gaussian-blurs-mobile-gpu
+
+#ifdef GL_ES
+    precision mediump float;
+#endif
+
+uniform sampler2D u_texture;
+
+varying vec2 blurCoordinate0;
+varying vec2 blurCoordinate1;
+varying vec2 blurCoordinate2;
+varying vec2 blurCoordinate3;
+varying vec2 blurCoordinate4;
+varying vec2 blurCoordinate5;
+varying vec2 blurCoordinate6;
+varying vec2 blurCoordinate7;
+varying vec2 blurCoordinate8;
+varying vec4 vColor;
+
+void main()
+{
+    // Kernel generated here: http://dev.theomader.com/gaussian-kernel-calculator/
+    // - Sigma = 1.81 (http://theinstructionlimit.com/gaussian-blur-revisited-part-two)
+    // - Kernel Size = 9
+
+	vec4 sum = vec4(0.0);
+	sum += texture2D(u_texture, blurCoordinate0) * 0.220486;
+	sum += texture2D(u_texture, blurCoordinate1) * 0.190005;
+	sum += texture2D(u_texture, blurCoordinate2) * 0.190005;
+	sum += texture2D(u_texture, blurCoordinate3) * 0.121592;
+	sum += texture2D(u_texture, blurCoordinate4) * 0.121592;
+	sum += texture2D(u_texture, blurCoordinate5) * 0.057777;
+	sum += texture2D(u_texture, blurCoordinate6) * 0.057777;
+	sum += texture2D(u_texture, blurCoordinate7) * 0.020382;
+	sum += texture2D(u_texture, blurCoordinate8) * 0.020382;
+
+	gl_FragColor = vColor * vec4(sum.rgb, 1.0);
+}

@@ -2,6 +2,7 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.myreliablegames.grandpagame.shaders.GreyscaleShader;
 
 import java.util.ArrayList;
 
@@ -22,17 +23,12 @@ public class PillManager {
     private boolean doubleVision = false;
     private float doubleWiggle;
     private float greyscale = 0.0f;
-    private boolean blurryVision;
 
     public PillManager(BaseLevelAssets baseLevelAssets) {
         assets = baseLevelAssets;
     }
 
     public void draw(SpriteBatch batch) {
-
-        if (blurryVision) {
-            // TODO: Set offscreen render target A.
-        }
 
         if (greyscale > 0.0f) {
             batch.setShader(GreyscaleShader.grayscaleShader);
@@ -52,17 +48,8 @@ public class PillManager {
             }
         }
 
-        // Reset to the default shader.
-        batch.setShader(null);
-
         // Hack: Drawing this makes all the pills draw properly.  Why?  I have no idea.
-        batch.draw(assets.drinkButtonUp, -Constants.WORLD_WIDTH, -Constants.WORLD_HEIGHT);
-
-        if (blurryVision) {
-            // TODO: Blur offscreen render target A in X direction. Output to offscreen render target B.
-            // TODO: Blur offscreen render target B in Y direction. Output to offscreen render target A.
-            // TODO: Copy offscreen render target A to main render target.
-        }
+        //batch.draw(assets.drinkButtonUp, -Constants.WORLD_WIDTH, -Constants.WORLD_HEIGHT);
     }
 
     public void populate(int numberOfPills, int numberOfPillTypes, boolean floatingPills) {
@@ -87,10 +74,6 @@ public class PillManager {
 
     public void setDoubleVision(boolean doubleVision) {
         this.doubleVision = doubleVision;
-    }
-
-    public void setBlurryVision(boolean blurryVision) {
-        this.blurryVision = blurryVision;
     }
 
     /**

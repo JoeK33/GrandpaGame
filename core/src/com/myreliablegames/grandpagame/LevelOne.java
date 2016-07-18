@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class LevelOne extends Level {
 
     public LevelOne(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
-        super(gameScreen, game, assets);
-        pillManager.populate(12, 3, false);
+        super(gameScreen, game, assets, GrandpaGame.LevelNumber.One);
+        pillManager.populate(12, 4, false);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
+        levelDiseases.add(DiseaseName.BlurryVision);
         levelDiseases.add(DiseaseName.Colorblind);
         levelDiseases.add(DiseaseName.RingingInEars);
         levelDiseases.add(DiseaseName.DoubleVision);
-        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets);
+        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this);
         grandpa.setDiseaseManager(diseaseManager);
     }
 

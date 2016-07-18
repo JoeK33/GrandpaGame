@@ -1,12 +1,12 @@
 package com.myreliablegames.grandpagame.Diseases;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.DrugName;
 import com.myreliablegames.grandpagame.Grandpa;
+import com.myreliablegames.grandpagame.Level;
 import com.myreliablegames.grandpagame.Pill;
 import com.myreliablegames.grandpagame.PillManager;
 
@@ -19,21 +19,24 @@ import java.util.Random;
  */
 public class DiseaseManager {
 
-    private ArrayList<Disease> possibleDiseases;
-    private ArrayList<Disease> activeDiseases;
+    private ArrayList<Disease> possibleDiseases = new ArrayList<Disease>();
+    private ArrayList<Disease> activeDiseases = new ArrayList<Disease>();
     private DiseaseFactory diseaseFactory;
     private PillManager pillManager;
     private Grandpa grandpa;
     private float grandpaDamageTimer;
     private float activateDiseaseTimer;
 
-    public DiseaseManager(PillManager pillManager, ArrayList<DiseaseName> levelDiseases, Grandpa grandpa, BaseLevelAssets assets) {
+    public DiseaseManager(
+            PillManager pillManager,
+            ArrayList<DiseaseName> levelDiseases,
+            Grandpa grandpa,
+            BaseLevelAssets assets,
+            Level level) {
+
         this.grandpa = grandpa;
         this.pillManager = pillManager;
-        diseaseFactory = new DiseaseFactory(pillManager.getPillsInPlay(), assets, pillManager);
-
-        possibleDiseases = new ArrayList();
-        activeDiseases = new ArrayList();
+        diseaseFactory = new DiseaseFactory(pillManager.getPillsInPlay(), assets, pillManager, level);
 
         possibleDiseases.addAll(diseaseFactory.getDiseaseList(levelDiseases));
         grandpaDamageTimer = 0;
