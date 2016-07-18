@@ -1,6 +1,8 @@
 package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.myreliablegames.grandpagame.Diseases.DiseaseManager;
+import com.myreliablegames.grandpagame.Diseases.DiseaseName;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 
 import java.util.ArrayList;
@@ -13,6 +15,12 @@ public class LevelFour extends Level {
     public LevelFour(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets);
         pillManager.populate(40, 12, false);
+        ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
+        levelDiseases.add(DiseaseName.Colorblind);
+        levelDiseases.add(DiseaseName.RingingInEars);
+        levelDiseases.add(DiseaseName.DoubleVision);
+        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets);
+        grandpa.setDiseaseManager(diseaseManager);
 
     }
 

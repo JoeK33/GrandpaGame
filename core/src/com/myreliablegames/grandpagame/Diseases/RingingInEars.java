@@ -1,6 +1,6 @@
 package com.myreliablegames.grandpagame.Diseases;
 
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
 import com.myreliablegames.grandpagame.Constants;
@@ -14,13 +14,13 @@ public class RingingInEars extends Disease {
     private float volume = 0;
     private final float volumeFadeSpeed = .3f;
     private boolean isRinging;
-    private Sound sound;
+    private Music ringing;
     private long soundID;
 
 
     public RingingInEars(DrugName cure, BaseLevelAssets assets) {
         super(new DiseaseDescription(cure, Constants.RINGING_DAMAGE), DiseaseName.RingingInEars);
-        sound = assets.diseaseSounds.ringingInEars;
+        ringing = assets.diseaseSounds.ringingInEars;
     }
 
 
@@ -45,7 +45,7 @@ public class RingingInEars extends Disease {
             volume = 0;
         }
 
-        sound.setVolume(soundID, volume);
+        ringing.setVolume(volume);
     }
 
     @Override
@@ -57,16 +57,15 @@ public class RingingInEars extends Disease {
     @Override
     public void beginDisease() {
         isRinging = true;
-        soundID = sound.play();
-        sound.setVolume(soundID, volume);
-
-        sound.setLooping(soundID, true);
+        ringing.play();
+        ringing.setVolume(volume);
+        ringing.setLooping(true);
     }
 
     @Override
     public boolean readyForRemoval() {
         if (cured && volume == 0) {
-            sound.stop(soundID);
+            ringing.stop();
             cured = false;
             return true;
         } else {

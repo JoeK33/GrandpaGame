@@ -29,7 +29,6 @@ public class GameScreen extends BaseScreen implements InputProcessor {
         level = LevelFactory.getLevel(levelNumber, this, game, baseLevelAssets);
     }
 
-
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         super.render(delta);
@@ -84,6 +83,7 @@ public class GameScreen extends BaseScreen implements InputProcessor {
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.BACK || keycode == Input.Keys.P){
             if (level.isPaused()) {
+                level.backPress();
                 game.openLevelSelectScreen();
             } else {
                 level.pauseToggle();

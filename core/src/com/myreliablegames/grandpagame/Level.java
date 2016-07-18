@@ -86,6 +86,10 @@ public abstract class Level {
         }
     }
 
+    public void backPress() {
+        baseLevelAssets.diseaseSounds.stopSounds();
+    }
+
     public void pauseToggle() {
         paused = !paused;
     }

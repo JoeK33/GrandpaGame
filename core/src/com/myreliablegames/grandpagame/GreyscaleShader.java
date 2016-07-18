@@ -40,7 +40,6 @@ public class GreyscaleShader {
     public static ShaderProgram grayscaleShader = new ShaderProgram(vertexShader,
             fragmentShader);
 
-
     /*
     batch.begin();
 grayscaleShader.setUniformf("u_grayness", grayness);

@@ -36,7 +36,6 @@ public enum DrugName {
         Deska,
         Hotnfat;
 
-
     public static ArrayList<DrugName> getDrugNameArrayList() {
         return new ArrayList<DrugName>(Arrays.asList(DrugName.values()));
     }

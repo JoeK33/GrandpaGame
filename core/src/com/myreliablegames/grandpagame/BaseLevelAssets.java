@@ -2,6 +2,7 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,7 +33,7 @@ public class BaseLevelAssets {
 
     public BaseLevelAssets() {
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
-        assetManager.load("sounds/ringing.wav", Sound.class);
+        assetManager.load("sounds/ringing.wav", Music.class);
         assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get("gameassets/grandpagame.pack");
@@ -271,12 +272,14 @@ public class BaseLevelAssets {
 
     public class DiseaseSounds {
 
-        public final Sound ringingInEars;
+        public final Music ringingInEars;
 
         public DiseaseSounds() {
             ringingInEars = assetManager.get("sounds/ringing.wav");
-
         }
 
+        public void stopSounds() {
+            ringingInEars.stop();
+        }
     }
 }

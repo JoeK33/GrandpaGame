@@ -16,7 +16,6 @@ public class DiseaseDescription {
         this.damage = damage;
     }
 
-
     public DrugName getCure() {
         return this.cure;
     }

@@ -37,7 +37,6 @@ public class DiseaseFactory {
         } else {  return new Colorblind(DrugName.Anipine, pillManager);}
     }
 
-
     public ArrayList<Disease> getDiseaseList(ArrayList<DiseaseName> levelDiseases) {
         ArrayList<Disease> listOfDiseases = new ArrayList<Disease>();
 
@@ -46,5 +45,4 @@ public class DiseaseFactory {
         }
         return listOfDiseases;
     }
-
 }

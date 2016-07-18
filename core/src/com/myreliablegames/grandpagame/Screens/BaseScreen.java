@@ -56,5 +56,4 @@ public class BaseScreen extends ScreenAdapter {
         batch.dispose();
         font.dispose();
     }
-
 }
