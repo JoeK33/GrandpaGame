@@ -2,6 +2,8 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.myreliablegames.grandpagame.Diseases.DiseaseManager;
@@ -25,8 +27,11 @@ public abstract class Level {
     GrandpaGame game;
     InputMultiplexer multiplexer;
     DiseaseManager diseaseManager;
+    protected GrandpaGame.LevelNumber levelNumber;
+    private BlurEffect blurEffect;
+    private float blurryVisionIntensity;
 
-    public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
+    public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets, GrandpaGame.LevelNumber levelNumber) {
         this.game = game;
         this.gameScreen = gameScreen;
         this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
@@ -47,6 +52,8 @@ public abstract class Level {
         multiplexer.addProcessor(gameScreen);
         Gdx.input.setInputProcessor(multiplexer);
 
+        this.levelNumber = levelNumber;
+        blurEffect = new BlurEffect();
     }
 
     public void show() {
@@ -54,8 +61,33 @@ public abstract class Level {
     }
 
     public void render(SpriteBatch batch) {
-        diseaseManager.draw(batch);
+
+        // Begin the blur effect. Anything drawn from here to blurEffect.end() will be blurred.
+        // This will be a no-op when blur is not enabled.
+        blurEffect.begin();
+
+        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // Render background.
+        BitmapFont font = gameScreen.getFont();
+        batch.begin();
+        font.draw(batch, "Game Screen", 0, Constants.WORLD_HEIGHT);
+        font.draw(batch, "Level Number " + levelNumber.toString(), 0, Constants.WORLD_HEIGHT / 2);
+        batch.end();
+        batch.flush();
+
+        // Render foreground.
+        batch.begin();
         pillManager.draw(batch);
+        diseaseManager.draw(batch);
+        batch.end();
+        batch.flush();
+
+        // Apply the blur effect. Again, this is a no-op when blur is disabled.
+        blurEffect.end(batch);
+
+        // Draw HUD on top.
         gameHUD.draw(batch);
     }
 
@@ -96,10 +128,14 @@ public abstract class Level {
 
     public void resize(int width, int height) {
         gameHUD.resize(width, height);
+        blurEffect.resize(width, height);
     }
 
     public void lose() {
         Gdx.app.log("Loser", "Game over");
     }
 
+    public void setBlurryVisionIntensity(float blurryVisionIntensity) {
+        blurEffect.setBlurRadius(blurryVisionIntensity);
+    }
 }

@@ -1,7 +1,6 @@
 package com.myreliablegames.grandpagame.Diseases;
 
 import com.myreliablegames.grandpagame.DrugName;
-import com.myreliablegames.grandpagame.Pill;
 
 /**
  * Created by Joe on 7/14/2016.
@@ -15,7 +14,6 @@ public class DiseaseDescription {
         this.cure = cure;
         this.damage = damage;
     }
-
 
     public DrugName getCure() {
         return this.cure;

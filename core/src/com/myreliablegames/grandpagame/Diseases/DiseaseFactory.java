@@ -2,6 +2,7 @@ package com.myreliablegames.grandpagame.Diseases;
 
 import com.myreliablegames.grandpagame.BaseLevelAssets;
 import com.myreliablegames.grandpagame.DrugName;
+import com.myreliablegames.grandpagame.Level;
 import com.myreliablegames.grandpagame.PillManager;
 
 import java.util.ArrayList;
@@ -14,11 +15,18 @@ public class DiseaseFactory {
     private ArrayList<DrugName> possibleCures;
     private BaseLevelAssets assets;
     private PillManager pillManager;
+    private Level level;
 
-    public DiseaseFactory(ArrayList<DrugName> pillsInPlay, BaseLevelAssets assets, PillManager pillManager) {
+    public DiseaseFactory(
+            ArrayList<DrugName> pillsInPlay,
+            BaseLevelAssets assets,
+            PillManager pillManager,
+            Level level) {
+
         this.possibleCures = new ArrayList<DrugName>(pillsInPlay);
         this.assets = assets;
         this.pillManager = pillManager;
+        this.level = level;
     }
 
     public Disease getDisease(DiseaseName name) {
@@ -34,9 +42,14 @@ public class DiseaseFactory {
             DoubleVision doubleVision = new DoubleVision(possibleCures.get(0), pillManager);
             possibleCures.remove(0);
             return doubleVision;
-        } else {  return new Colorblind(DrugName.Anipine, pillManager);}
+        } else if (name == DiseaseName.BlurryVision) {
+            BlurryVision blurryVision = new BlurryVision(possibleCures.get(0), level);
+            possibleCures.remove(0);
+            return blurryVision;
+        } else {
+            return new Colorblind(DrugName.Anipine, pillManager);
+        }
     }
-
 
     public ArrayList<Disease> getDiseaseList(ArrayList<DiseaseName> levelDiseases) {
         ArrayList<Disease> listOfDiseases = new ArrayList<Disease>();
@@ -46,5 +59,4 @@ public class DiseaseFactory {
         }
         return listOfDiseases;
     }
-
 }
