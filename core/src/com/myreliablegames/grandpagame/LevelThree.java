@@ -18,7 +18,7 @@ public class LevelThree extends Level {
         levelDiseases.add(DiseaseName.Colorblind);
         levelDiseases.add(DiseaseName.RingingInEars);
         levelDiseases.add(DiseaseName.DoubleVision);
-        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets);
+        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this);
         grandpa.setDiseaseManager(diseaseManager);
     }
 

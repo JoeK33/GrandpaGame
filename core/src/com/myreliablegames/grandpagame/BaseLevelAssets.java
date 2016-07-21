@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class BaseLevelAssets {
 
     public PillAssets pillAssets;
-    public DiseaseSounds diseaseSounds;
+    public DiseaseAssets diseaseAssets;
     private AssetManager assetManager = new AssetManager();
 
     public final TextureRegion drinkButtonUp;
@@ -51,12 +51,31 @@ public class BaseLevelAssets {
         prescriptionButtonDown = atlas.findRegion("prescriptionbuttondown");
 
         pillAssets = new PillAssets(atlas);
-        diseaseSounds = new DiseaseSounds();
+        diseaseAssets = new DiseaseAssets(atlas);
 
     }
 
     public void dispose() {
        assetManager.dispose();
+    }
+
+    public class DiseaseAssets {
+
+        public final TextureRegion snake;
+        public final TextureRegion sparkle;
+
+        public final Music ringingInEars;
+
+        public DiseaseAssets(TextureAtlas atlas) {
+            snake = atlas.findRegion("snake");
+            sparkle = atlas.findRegion("sparkle");
+
+            ringingInEars = assetManager.get("sounds/ringing.wav");
+        }
+
+        public void stopSounds() {
+            ringingInEars.stop();
+        }
     }
 
 
@@ -270,16 +289,4 @@ public class BaseLevelAssets {
         }
     }
 
-    public class DiseaseSounds {
-
-        public final Music ringingInEars;
-
-        public DiseaseSounds() {
-            ringingInEars = assetManager.get("sounds/ringing.wav");
-        }
-
-        public void stopSounds() {
-            ringingInEars.stop();
-        }
-    }
 }

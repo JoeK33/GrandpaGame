@@ -21,6 +21,7 @@ public class PillManager {
     private float pillPadding = 3;
     private PillFactory pillFactory;
     private boolean doubleVision = false;
+    private boolean hasShakes = false;
     private float doubleWiggle;
     private float greyscale = 0.0f;
 
@@ -39,7 +40,12 @@ public class PillManager {
         }
 
         for (Pill p : listOfPills) {
-            p.draw(batch);
+            if (!hasShakes) {
+                p.draw(batch);
+            } else {
+                p.drawShakes(batch);
+            }
+
         }
 
         if (doubleVision) {
@@ -82,6 +88,10 @@ public class PillManager {
      */
     public void setGreyscale(float greyscale) {
         this.greyscale = greyscale;
+    }
+
+    public void setShakes(boolean hasShakes) {
+        this.hasShakes = hasShakes;
     }
 
     public void update(float delta) {

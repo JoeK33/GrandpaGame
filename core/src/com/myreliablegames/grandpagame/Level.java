@@ -119,7 +119,7 @@ public abstract class Level {
     }
 
     public void backPress() {
-        baseLevelAssets.diseaseSounds.stopSounds();
+        baseLevelAssets.diseaseAssets.stopSounds();
     }
 
     public void pauseToggle() {

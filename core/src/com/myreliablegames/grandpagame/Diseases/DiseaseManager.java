@@ -1,5 +1,6 @@
 package com.myreliablegames.grandpagame.Diseases;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
@@ -70,8 +71,8 @@ public class DiseaseManager {
             activateDiseaseTimer = 0;
         }
 
-       // Gdx.app.log("Active Diseases: ", activeDiseases.toString());
-       // Gdx.app.log("Possible Diseases: ", possibleDiseases.toString());
+        Gdx.app.log("Active Diseases: ", activeDiseases.toString());
+        Gdx.app.log("Possible Diseases: ", possibleDiseases.toString());
     }
 
     public void draw(SpriteBatch batch) {

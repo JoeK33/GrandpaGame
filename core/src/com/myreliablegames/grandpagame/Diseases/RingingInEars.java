@@ -20,7 +20,7 @@ public class RingingInEars extends Disease {
 
     public RingingInEars(DrugName cure, BaseLevelAssets assets) {
         super(new DiseaseDescription(cure, Constants.RINGING_DAMAGE), DiseaseName.RingingInEars);
-        ringing = assets.diseaseSounds.ringingInEars;
+        ringing = assets.diseaseAssets.ringingInEars;
     }
 
 

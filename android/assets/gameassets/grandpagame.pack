@@ -3,60 +3,74 @@ grandpagame.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-drinkbuttondown
-  rotate: false
-  xy: 1, 165
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-drinkbuttonup
+snake
   rotate: false
   xy: 1, 83
-  size: 80, 80
-  orig: 80, 80
+  size: 384, 128
+  orig: 384, 128
   offset: 0, 0
   index: -1
-eatbuttondown
-  rotate: false
-  xy: 83, 165
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-eatbuttonup
+drinkbuttondown
   rotate: false
   xy: 1, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-pillbuttondown
+drinkbuttonup
   rotate: false
-  xy: 83, 83
+  xy: 387, 131
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-pillbuttonup
-  rotate: false
-  xy: 165, 165
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-prescriptionbuttondown
+eatbuttondown
   rotate: false
   xy: 83, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-prescriptionbuttonup
+eatbuttonup
   rotate: false
-  xy: 165, 83
+  xy: 469, 131
   size: 80, 80
   orig: 80, 80
+  offset: 0, 0
+  index: -1
+pillbuttondown
+  rotate: false
+  xy: 165, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+pillbuttonup
+  rotate: false
+  xy: 551, 131
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+prescriptionbuttondown
+  rotate: false
+  xy: 247, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+prescriptionbuttonup
+  rotate: false
+  xy: 633, 131
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+sparkle
+  rotate: false
+  xy: 715, 147
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 
