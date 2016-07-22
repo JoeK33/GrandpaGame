@@ -15,11 +15,16 @@ public class LevelSix extends Level {
         super(gameScreen, game, assets, GrandpaGame.LevelNumber.Six);
         pillManager.populate(60, 15, false);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
-        levelDiseases.add(DiseaseName.Colorblind);
-        levelDiseases.add(DiseaseName.RingingInEars);
-        levelDiseases.add(DiseaseName.DoubleVision);
+           levelDiseases.add(DiseaseName.Shakes);
+           levelDiseases.add(DiseaseName.SeeSnakes);
+           levelDiseases.add(DiseaseName.Sparkles);
+           levelDiseases.add(DiseaseName.DoubleVision);
+           levelDiseases.add(DiseaseName.Colorblind);
+           levelDiseases.add(DiseaseName.BlurryVision);
+           levelDiseases.add(DiseaseName.RingingInEars);
         this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this);
         grandpa.setDiseaseManager(diseaseManager);
+        prescriptionScreen.initWriter();
     }
 
     @Override

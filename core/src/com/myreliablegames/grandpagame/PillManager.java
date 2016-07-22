@@ -15,6 +15,7 @@ public class PillManager {
     private Pill[][] pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
     private ArrayList<Pill> listOfPills = new ArrayList<Pill>();
     private ArrayList<DrugName> uniquePillDrugNames = new ArrayList<DrugName>();
+    private ArrayList<Pill> uniquePills = new ArrayList<Pill>();
     private BaseLevelAssets assets;
     private float YDrawOffset = 100;
     private float XDrawOffset = 76;
@@ -119,6 +120,7 @@ public class PillManager {
             listOfPills.add(pill);
             if (!uniquePillDrugNames.contains(pill.getPillDescription().getDrugName())) {
                 uniquePillDrugNames.add(pill.getPillDescription().getDrugName());
+                uniquePills.add(pill);
             }
 
             return true;
@@ -140,6 +142,10 @@ public class PillManager {
             }
         }
         return null;
+    }
+
+    public ArrayList<Pill> getUniquePills() {
+        return uniquePills;
     }
 
     public void clear() {

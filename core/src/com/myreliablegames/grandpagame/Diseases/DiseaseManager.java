@@ -21,6 +21,7 @@ import java.util.Random;
 public class DiseaseManager {
 
     private ArrayList<Disease> possibleDiseases = new ArrayList<Disease>();
+    private ArrayList<Disease> allDiseases = new ArrayList<Disease>();
     private ArrayList<Disease> activeDiseases = new ArrayList<Disease>();
     private DiseaseFactory diseaseFactory;
     private PillManager pillManager;
@@ -40,6 +41,7 @@ public class DiseaseManager {
         diseaseFactory = new DiseaseFactory(pillManager.getPillsInPlay(), assets, pillManager, level);
 
         possibleDiseases.addAll(diseaseFactory.getDiseaseList(levelDiseases));
+        allDiseases.addAll(possibleDiseases);
         grandpaDamageTimer = 0;
         activateDiseaseTimer = 0;
     }
@@ -79,6 +81,10 @@ public class DiseaseManager {
         for (Disease disease : activeDiseases) {
             disease.draw(batch);
         }
+    }
+
+    public ArrayList<Disease> getAllDiseases() {
+        return allDiseases;
     }
 
     public boolean tryCureDisease(Pill pill) {

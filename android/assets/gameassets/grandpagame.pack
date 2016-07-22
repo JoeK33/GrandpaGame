@@ -10,65 +10,93 @@ snake
   orig: 384, 128
   offset: 0, 0
   index: -1
-drinkbuttondown
+backbuttondown
   rotate: false
   xy: 1, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-drinkbuttonup
+backbuttonup
   rotate: false
   xy: 387, 131
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-eatbuttondown
+drinkbuttondown
   rotate: false
   xy: 83, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-eatbuttonup
+drinkbuttonup
   rotate: false
   xy: 469, 131
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-pillbuttondown
+eatbuttondown
   rotate: false
   xy: 165, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-pillbuttonup
+eatbuttonup
   rotate: false
   xy: 551, 131
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-prescriptionbuttondown
+pillbuttondown
   rotate: false
   xy: 247, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
-prescriptionbuttonup
+pillbuttonup
   rotate: false
   xy: 633, 131
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
+prescriptionbuttondown
+  rotate: false
+  xy: 715, 131
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+prescriptionbuttonup
+  rotate: false
+  xy: 797, 131
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+paper
+  rotate: false
+  xy: 879, 145
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+paper2
+  rotate: false
+  xy: 947, 145
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
 sparkle
   rotate: false
-  xy: 715, 147
+  xy: 329, 17
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

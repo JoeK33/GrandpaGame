@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -31,6 +32,16 @@ public class BaseLevelAssets {
     public final TextureRegion prescriptionButtonUp;
     public final TextureRegion prescriptionButtonDown;
 
+    public final TextureRegion backButtonUp;
+    public final TextureRegion backButtonDown;
+
+    public final NinePatch loadingBarBackgroundPatch;
+    public final NinePatch loadingBarPatch;
+
+    public final NinePatch paperPatch;
+    public final NinePatch paper2Patch;
+
+
     public BaseLevelAssets() {
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
         assetManager.load("sounds/ringing.wav", Music.class);
@@ -50,8 +61,19 @@ public class BaseLevelAssets {
         prescriptionButtonUp = atlas.findRegion("prescriptionbuttonup");
         prescriptionButtonDown = atlas.findRegion("prescriptionbuttondown");
 
+        backButtonUp = atlas.findRegion("backbuttonup");
+        backButtonDown = atlas.findRegion("backbuttondown");
+
         pillAssets = new PillAssets(atlas);
         diseaseAssets = new DiseaseAssets(atlas);
+
+        paperPatch = new NinePatch(atlas.findRegion("paper"), 22, 22, 22, 22);
+        paper2Patch = new NinePatch(atlas.findRegion("paper2"), 22, 22, 22, 22);
+
+        TextureAtlas skinAtlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+        loadingBarBackgroundPatch = new NinePatch(skinAtlas.findRegion("default-round"), 5, 5, 4, 4);
+        loadingBarPatch = new NinePatch(skinAtlas.findRegion("default-round-down"), 5, 5, 4, 4);
+
 
     }
 

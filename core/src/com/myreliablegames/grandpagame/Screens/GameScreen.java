@@ -38,6 +38,12 @@ public class GameScreen extends BaseScreen implements InputProcessor {
         }
     }
 
+    public void update(float delta) {
+        if (!level.isPaused()) {
+            level.update(delta);
+        }
+    }
+
     public void dispose() {
         batch.dispose();
         baseLevelAssets.dispose();

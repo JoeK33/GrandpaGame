@@ -49,6 +49,6 @@ public class DoubleVision extends Disease {
 
     @Override
     public String getPrescriptionDescription() {
-        return this.getDescription().getCure().toString() + " is very effective against double vision";
+        return this.getDescription().getCure().toString() + " is very effective against double vision.";
     }
 }

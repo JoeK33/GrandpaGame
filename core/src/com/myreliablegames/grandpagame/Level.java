@@ -34,14 +34,16 @@ public abstract class Level {
     public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets, GrandpaGame.LevelNumber levelNumber) {
         this.game = game;
         this.gameScreen = gameScreen;
-        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
-        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
+
 
         baseLevelAssets = assets;
         pillManager = new PillManager(baseLevelAssets);
         paused = false;
         grandpa = new Grandpa(this);
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
+
+        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen, assets, grandpa, pillManager.getUniquePills(), gameScreen.getFont());
+        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen, assets, grandpa);
 
         // Remove input processor so players can not change levels while pills are falling.
         Gdx.input.setInputProcessor(null);

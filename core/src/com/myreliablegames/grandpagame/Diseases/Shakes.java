@@ -50,6 +50,6 @@ public class Shakes extends Disease {
 
     @Override
     public String getPrescriptionDescription() {
-        return this.getDescription().getCure().toString() + " will steady your neves and stop the shakes";
+        return this.getDescription().getCure().toString() + " will steady your nerves and stop the shakes.";
     }
 }

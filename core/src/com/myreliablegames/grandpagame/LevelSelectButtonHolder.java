@@ -36,9 +36,9 @@ public class LevelSelectButtonHolder {
         skin.add("default", new Texture(pixmap));
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("default", Color.DARK_GRAY);
+        textButtonStyle.up = skin.newDrawable("default", Color.LIGHT_GRAY);
         textButtonStyle.down = skin.newDrawable("default", Color.WHITE);
-        textButtonStyle.checked = skin.newDrawable("default", Color.DARK_GRAY);
+        textButtonStyle.checked = skin.newDrawable("default", Color.LIGHT_GRAY);
         textButtonStyle.over = skin.newDrawable("default", Color.LIGHT_GRAY);
 
         textButtonStyle.font = skin.getFont("default");

@@ -15,7 +15,7 @@ public enum DrugName {
         Quicom,
         Dadroquent,
         Quanto,
-        Dasthuash,
+        Dadsthuash,
         Fyquoril,
         Flybixot,
         Aquote,
