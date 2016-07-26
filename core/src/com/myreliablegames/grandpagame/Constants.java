@@ -28,8 +28,7 @@ public class Constants {
     // Controls the "blurriness" applied during blurry vision. Larger numbers means more blur.
     public static final float MAX_BLURRY_VISION_INTENSITY = 6.9420f;
 
-    // 6 secs
-    public static final long DISEASE_DAMAGE_INTERVAL = 2;
+    public static final long DISEASE_DAMAGE_INTERVAL = 3;
 
-    public static final long DISEASE_SPAWN_INTERVAL = 6;
+    public static final long DISEASE_SPAWN_INTERVAL = 10;
 }

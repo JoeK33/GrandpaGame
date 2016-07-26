@@ -3,6 +3,7 @@ package com.myreliablegames.grandpagame.Diseases;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.DrugName;
+import com.myreliablegames.grandpagame.Level;
 import com.myreliablegames.grandpagame.PillManager;
 
 /**
@@ -11,10 +12,12 @@ import com.myreliablegames.grandpagame.PillManager;
 public class Shakes extends Disease {
 
     private PillManager pillManager;
+    private Level level;
 
-    public Shakes(DrugName cure, PillManager manager) {
+    public Shakes(DrugName cure, PillManager manager, Level level) {
         super(new DiseaseDescription(cure, Constants.SHAKES_DAMAGE), DiseaseName.Shakes);
         this.pillManager = manager;
+        this.level = level;
     }
 
     @Override
@@ -30,12 +33,14 @@ public class Shakes extends Disease {
     @Override
     public void cureDisease() {
         pillManager.setShakes(false);
+        level.shakeOff();
         cured = true;
     }
 
     @Override
     public void beginDisease() {
         pillManager.setShakes(true);
+        level.shakeOn();
     }
 
     @Override

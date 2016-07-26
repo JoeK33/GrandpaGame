@@ -14,9 +14,9 @@ public class LevelOne extends Level {
 
     public LevelOne(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets, GrandpaGame.LevelNumber.One);
-        pillManager.populate(12, 3, false);
+        pillManager.populate(12, 5, false);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
-     //   levelDiseases.add(DiseaseName.Shakes);
+        levelDiseases.add(DiseaseName.Shakes);
      //   levelDiseases.add(DiseaseName.SeeSnakes);
      //   levelDiseases.add(DiseaseName.Sparkles);
      //   levelDiseases.add(DiseaseName.DoubleVision);

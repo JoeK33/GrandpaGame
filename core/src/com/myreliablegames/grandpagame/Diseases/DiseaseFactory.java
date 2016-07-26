@@ -55,7 +55,7 @@ public class DiseaseFactory {
             possibleCures.remove(0);
             return sparkles;
         }else if (name == DiseaseName.Shakes) {
-            Shakes shakes = new Shakes(possibleCures.get(0), pillManager);
+            Shakes shakes = new Shakes(possibleCures.get(0), pillManager, level);
             possibleCures.remove(0);
             return shakes;
         }else {

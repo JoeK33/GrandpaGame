@@ -70,6 +70,7 @@ public class MedicineCabinetScreen extends BaseScreen {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        hud.resize(width, height);
     }
 
 }

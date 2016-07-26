@@ -46,7 +46,6 @@ public class PillManager {
             } else {
                 p.drawShakes(batch);
             }
-
         }
 
         if (doubleVision) {
