@@ -41,6 +41,7 @@ public class BlurryVision extends Disease {
     @Override
     public void cureDisease() {
         isEnabled = false;
+        cured = true;
     }
 
     @Override
@@ -50,11 +51,17 @@ public class BlurryVision extends Disease {
 
     @Override
     public boolean readyForRemoval() {
-        return currentMaxBlurriness <= 0.0f;
+
+        if (currentMaxBlurriness <= 0.0f && cured) {
+            cured = false;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String getPrescriptionDescription() {
-        return this.getDescription().getCure().toString();
+        return this.getDescription().getCure().toString() + " will clear up that blurry vision.";
     }
 }

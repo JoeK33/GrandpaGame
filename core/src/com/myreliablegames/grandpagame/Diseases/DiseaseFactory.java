@@ -46,7 +46,19 @@ public class DiseaseFactory {
             BlurryVision blurryVision = new BlurryVision(possibleCures.get(0), level);
             possibleCures.remove(0);
             return blurryVision;
-        } else {
+        } else if (name == DiseaseName.SeeSnakes) {
+            SeeSnakes seeSnakes = new SeeSnakes(possibleCures.get(0), assets);
+            possibleCures.remove(0);
+            return seeSnakes;
+        } else if (name == DiseaseName.Sparkles) {
+            MigraineSparkles sparkles = new MigraineSparkles(possibleCures.get(0), assets);
+            possibleCures.remove(0);
+            return sparkles;
+        }else if (name == DiseaseName.Shakes) {
+            Shakes shakes = new Shakes(possibleCures.get(0), pillManager, level);
+            possibleCures.remove(0);
+            return shakes;
+        }else {
             return new Colorblind(DrugName.Anipine, pillManager);
         }
     }

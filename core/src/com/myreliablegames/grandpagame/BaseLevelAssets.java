@@ -2,8 +2,10 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public class BaseLevelAssets {
 
     public PillAssets pillAssets;
-    public DiseaseSounds diseaseSounds;
+    public DiseaseAssets diseaseAssets;
     private AssetManager assetManager = new AssetManager();
 
     public final TextureRegion drinkButtonUp;
@@ -30,9 +32,19 @@ public class BaseLevelAssets {
     public final TextureRegion prescriptionButtonUp;
     public final TextureRegion prescriptionButtonDown;
 
+    public final TextureRegion backButtonUp;
+    public final TextureRegion backButtonDown;
+
+    public final NinePatch loadingBarBackgroundPatch;
+    public final NinePatch loadingBarPatch;
+
+    public final NinePatch paperPatch;
+    public final NinePatch paper2Patch;
+
+
     public BaseLevelAssets() {
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
-        assetManager.load("sounds/ringing.wav", Sound.class);
+        assetManager.load("sounds/ringing.wav", Music.class);
         assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get("gameassets/grandpagame.pack");
@@ -49,13 +61,43 @@ public class BaseLevelAssets {
         prescriptionButtonUp = atlas.findRegion("prescriptionbuttonup");
         prescriptionButtonDown = atlas.findRegion("prescriptionbuttondown");
 
+        backButtonUp = atlas.findRegion("backbuttonup");
+        backButtonDown = atlas.findRegion("backbuttondown");
+
         pillAssets = new PillAssets(atlas);
-        diseaseSounds = new DiseaseSounds();
+        diseaseAssets = new DiseaseAssets(atlas);
+
+        paperPatch = new NinePatch(atlas.findRegion("paper"), 22, 22, 22, 22);
+        paper2Patch = new NinePatch(atlas.findRegion("paper2"), 22, 22, 22, 22);
+
+        TextureAtlas skinAtlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+        loadingBarBackgroundPatch = new NinePatch(skinAtlas.findRegion("default-round"), 5, 5, 4, 4);
+        loadingBarPatch = new NinePatch(skinAtlas.findRegion("default-round-down"), 5, 5, 4, 4);
+
 
     }
 
     public void dispose() {
        assetManager.dispose();
+    }
+
+    public class DiseaseAssets {
+
+        public final TextureRegion snake;
+        public final TextureRegion sparkle;
+
+        public final Music ringingInEars;
+
+        public DiseaseAssets(TextureAtlas atlas) {
+            snake = atlas.findRegion("snake");
+            sparkle = atlas.findRegion("sparkle");
+
+            ringingInEars = assetManager.get("sounds/ringing.wav");
+        }
+
+        public void stopSounds() {
+            ringingInEars.stop();
+        }
     }
 
 
@@ -269,14 +311,4 @@ public class BaseLevelAssets {
         }
     }
 
-    public class DiseaseSounds {
-
-        public final Sound ringingInEars;
-
-        public DiseaseSounds() {
-            ringingInEars = assetManager.get("sounds/ringing.wav");
-
-        }
-
-    }
 }

@@ -15,7 +15,7 @@ public enum DrugName {
         Quicom,
         Dadroquent,
         Quanto,
-        Dasthuash,
+        Dadsthuash,
         Fyquoril,
         Flybixot,
         Aquote,
@@ -35,7 +35,6 @@ public enum DrugName {
         Tyraka,
         Deska,
         Hotnfat;
-
 
     public static ArrayList<DrugName> getDrugNameArrayList() {
         return new ArrayList<DrugName>(Arrays.asList(DrugName.values()));

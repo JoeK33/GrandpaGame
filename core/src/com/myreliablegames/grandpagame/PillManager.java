@@ -15,12 +15,14 @@ public class PillManager {
     private Pill[][] pills = new Pill[Constants.PILLS_WIDE][Constants.PILLS_HIGH];
     private ArrayList<Pill> listOfPills = new ArrayList<Pill>();
     private ArrayList<DrugName> uniquePillDrugNames = new ArrayList<DrugName>();
+    private ArrayList<Pill> uniquePills = new ArrayList<Pill>();
     private BaseLevelAssets assets;
     private float YDrawOffset = 100;
     private float XDrawOffset = 76;
     private float pillPadding = 3;
     private PillFactory pillFactory;
     private boolean doubleVision = false;
+    private boolean hasShakes = false;
     private float doubleWiggle;
     private float greyscale = 0.0f;
 
@@ -39,7 +41,11 @@ public class PillManager {
         }
 
         for (Pill p : listOfPills) {
-            p.draw(batch);
+            if (!hasShakes) {
+                p.draw(batch);
+            } else {
+                p.drawShakes(batch);
+            }
         }
 
         if (doubleVision) {
@@ -84,6 +90,10 @@ public class PillManager {
         this.greyscale = greyscale;
     }
 
+    public void setShakes(boolean hasShakes) {
+        this.hasShakes = hasShakes;
+    }
+
     public void update(float delta) {
         for (Pill p : listOfPills) {
             p.update(delta);
@@ -109,6 +119,7 @@ public class PillManager {
             listOfPills.add(pill);
             if (!uniquePillDrugNames.contains(pill.getPillDescription().getDrugName())) {
                 uniquePillDrugNames.add(pill.getPillDescription().getDrugName());
+                uniquePills.add(pill);
             }
 
             return true;
@@ -130,6 +141,10 @@ public class PillManager {
             }
         }
         return null;
+    }
+
+    public ArrayList<Pill> getUniquePills() {
+        return uniquePills;
     }
 
     public void clear() {

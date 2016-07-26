@@ -46,7 +46,6 @@ public class TitleScreen extends BaseScreen implements InputProcessor {
         return false;
     }
 
-
     // Unused input methods
     @Override
     public boolean keyDown(int keycode) {

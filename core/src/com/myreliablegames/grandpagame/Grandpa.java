@@ -62,6 +62,10 @@ public class Grandpa {
         return this.health;
     }
 
+    public DiseaseManager getDiseaseManager() {
+        return this.diseaseManager;
+    }
+
     private void constrainHealth() {
         if (health > Constants.GRANDPA_HEALTH) {
             health = Constants.GRANDPA_HEALTH;

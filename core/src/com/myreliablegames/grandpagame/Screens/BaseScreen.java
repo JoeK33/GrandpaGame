@@ -21,6 +21,7 @@ public class BaseScreen extends ScreenAdapter {
     GrandpaGame game;
     SpriteBatch batch;
     BitmapFont font;
+    BitmapFont grandmaFont;
 
     public BaseScreen(GrandpaGame game) {
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
@@ -32,6 +33,10 @@ public class BaseScreen extends ScreenAdapter {
         font = new BitmapFont(Gdx.files.internal("font.fnt"), false);
         font.getData().setScale(.5f);
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        grandmaFont = new BitmapFont(Gdx.files.internal("font2.fnt"), false);
+        grandmaFont.getData().setScale(.5f);
+        grandmaFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     @Override
@@ -55,6 +60,6 @@ public class BaseScreen extends ScreenAdapter {
         super.dispose();
         batch.dispose();
         font.dispose();
+        grandmaFont.dispose();
     }
-
 }

@@ -38,6 +38,12 @@ public class GameScreen extends BaseScreen implements InputProcessor {
         }
     }
 
+    public void update(float delta) {
+        if (!level.isPaused()) {
+            level.update(delta);
+        }
+    }
+
     public void dispose() {
         batch.dispose();
         baseLevelAssets.dispose();
@@ -71,6 +77,7 @@ public class GameScreen extends BaseScreen implements InputProcessor {
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.BACK || keycode == Input.Keys.P){
             if (level.isPaused()) {
+                level.backPress();
                 game.openLevelSelectScreen();
             } else {
                 level.pauseToggle();

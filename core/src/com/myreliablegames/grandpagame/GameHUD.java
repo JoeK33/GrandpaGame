@@ -50,10 +50,10 @@ public class GameHUD {
         healthBar.setHeight(30);
         table.add(healthBar).expandX().top().right().colspan(4).pad(10);
         table.row();
-        table.add(drinkButton).size(70, 70).bottom().width(75);
-        table.add(eatButton).size(70, 70).bottom().left().padLeft(-5).width(75).expandX();
-        table.add(prescriptionButton).size(70, 70).bottom().right().padRight(-5).width(75).expandX();
-        table.add(medicineBottleButton).size(70, 70).bottom().right().width(75);
+        table.add(prescriptionButton).size(70, 70).bottom().left().width(75).expandX();
+       // table.add(eatButton).size(70, 70).bottom().left().padLeft(-5).width(75).expandX();
+      //  table.add(prescriptionButton).size(70, 70).bottom().right().padRight(-5).width(75).expandX();
+        table.add(medicineBottleButton).size(70, 70).bottom().right().width(75).expandX();
         stage.addActor(table);
         table.pack();
 

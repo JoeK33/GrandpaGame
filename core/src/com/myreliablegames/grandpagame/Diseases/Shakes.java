@@ -3,18 +3,21 @@ package com.myreliablegames.grandpagame.Diseases;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.DrugName;
+import com.myreliablegames.grandpagame.Level;
 import com.myreliablegames.grandpagame.PillManager;
 
 /**
- * Created by Joe on 7/14/2016.
+ * Created by Joe on 7/20/2016.
  */
-public class DoubleVision extends Disease {
+public class Shakes extends Disease {
 
     private PillManager pillManager;
+    private Level level;
 
-    public DoubleVision(DrugName cure, PillManager pillManager) {
-        super(new DiseaseDescription(cure, Constants.DOUBLE_VISION_DAMAGE), DiseaseName.RingingInEars);
-        this.pillManager = pillManager;
+    public Shakes(DrugName cure, PillManager manager, Level level) {
+        super(new DiseaseDescription(cure, Constants.SHAKES_DAMAGE), DiseaseName.Shakes);
+        this.pillManager = manager;
+        this.level = level;
     }
 
     @Override
@@ -29,13 +32,15 @@ public class DoubleVision extends Disease {
 
     @Override
     public void cureDisease() {
-        pillManager.setDoubleVision(false);
+        pillManager.setShakes(false);
+        level.shakeOff();
         cured = true;
     }
 
     @Override
     public void beginDisease() {
-        pillManager.setDoubleVision(true);
+        pillManager.setShakes(true);
+        level.shakeOn();
     }
 
     @Override
@@ -43,12 +48,13 @@ public class DoubleVision extends Disease {
         if (cured) {
             cured = false;
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     @Override
     public String getPrescriptionDescription() {
-        return this.getDescription().getCure().toString() + " is very effective against double vision.";
+        return this.getDescription().getCure().toString() + " will steady your nerves and stop the shakes.";
     }
 }

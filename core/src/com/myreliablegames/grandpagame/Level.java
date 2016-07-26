@@ -3,6 +3,7 @@ package com.myreliablegames.grandpagame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -29,19 +30,24 @@ public abstract class Level {
     DiseaseManager diseaseManager;
     protected GrandpaGame.LevelNumber levelNumber;
     private BlurEffect blurEffect;
+    private BackGround backGround;
     private float blurryVisionIntensity;
+
 
     public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets, GrandpaGame.LevelNumber levelNumber) {
         this.game = game;
         this.gameScreen = gameScreen;
-        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen);
-        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen);
+
 
         baseLevelAssets = assets;
         pillManager = new PillManager(baseLevelAssets);
         paused = false;
         grandpa = new Grandpa(this);
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
+        backGround = new BackGround();
+
+        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen, assets, grandpa, pillManager.getUniquePills(), gameScreen.getFont());
+        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen, assets, grandpa);
 
         // Remove input processor so players can not change levels while pills are falling.
         Gdx.input.setInputProcessor(null);
@@ -54,6 +60,14 @@ public abstract class Level {
 
         this.levelNumber = levelNumber;
         blurEffect = new BlurEffect();
+    }
+
+    public void shakeOn() {
+        backGround.shakeOn();
+    }
+
+    public void shakeOff() {
+        backGround.shakeOff();
     }
 
     public void show() {
@@ -70,10 +84,8 @@ public abstract class Level {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Render background.
-        BitmapFont font = gameScreen.getFont();
         batch.begin();
-        font.draw(batch, "Game Screen", 0, Constants.WORLD_HEIGHT);
-        font.draw(batch, "Level Number " + levelNumber.toString(), 0, Constants.WORLD_HEIGHT / 2);
+        backGround.draw(batch);
         batch.end();
         batch.flush();
 
@@ -96,6 +108,7 @@ public abstract class Level {
         gameHUD.update(delta);
         grandpa.update(delta);
         pillManager.update(delta);
+        backGround.update(delta);
     }
 
     public void openMedicineCabinet() {
@@ -116,6 +129,10 @@ public abstract class Level {
                 pill.setActive(false);
             }
         }
+    }
+
+    public void backPress() {
+        baseLevelAssets.diseaseAssets.stopSounds();
     }
 
     public void pauseToggle() {

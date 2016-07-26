@@ -29,5 +29,4 @@ public class LevelSelectScreen extends BaseScreen {
         super.resize(width, height);
         buttons.resize(width, height);
     }
-
 }

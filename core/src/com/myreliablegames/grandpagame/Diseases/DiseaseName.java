@@ -7,5 +7,8 @@ public enum DiseaseName {
     Colorblind,
     RingingInEars,
     DoubleVision,
-    BlurryVision
+    BlurryVision,
+    SeeSnakes,
+    Sparkles,
+    Shakes;
 }

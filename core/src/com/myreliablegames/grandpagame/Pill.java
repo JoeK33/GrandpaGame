@@ -1,6 +1,7 @@
 package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
@@ -20,6 +21,8 @@ public class Pill {
     private final float BOB_SPEED = 3;
     private float floatOffset = 0;
     private float wiggleDegrees = 0;
+    private float shakeOffsetX = MathUtils.random(-5, 5);
+    private float shakeOffsetY = MathUtils.random(-5, 5);
 
     public Pill(PillDescription pillDescription, Random rand, boolean floating) {
         isActive = true;
@@ -36,6 +39,13 @@ public class Pill {
         if (isActive) {
             batch.draw(pillDescription.getTextureRegion(), position.x, position.y + dropHeight + floatOffset);
             batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x, position.y + dropHeight + floatOffset);
+        }
+    }
+
+    public void drawShakes(SpriteBatch batch) {
+        if (isActive) {
+            batch.draw(pillDescription.getTextureRegion(), position.x + shakeOffsetX, position.y + dropHeight + floatOffset + shakeOffsetY);
+            batch.draw(pillDescription.getAnimation().getKeyFrame(stateTime), position.x + shakeOffsetX, position.y + dropHeight + floatOffset + shakeOffsetY);
         }
     }
 
@@ -72,7 +82,8 @@ public class Pill {
             }
 
         }
-
+        shakeOffsetX = MathUtils.random(-5, 5);
+        shakeOffsetY = MathUtils.random(-5, 5);
     }
 
     public void setPosition(Vector2 position) {

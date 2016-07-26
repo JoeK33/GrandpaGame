@@ -1,5 +1,6 @@
 package com.myreliablegames.grandpagame.Diseases;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
@@ -20,6 +21,7 @@ import java.util.Random;
 public class DiseaseManager {
 
     private ArrayList<Disease> possibleDiseases = new ArrayList<Disease>();
+    private ArrayList<Disease> allDiseases = new ArrayList<Disease>();
     private ArrayList<Disease> activeDiseases = new ArrayList<Disease>();
     private DiseaseFactory diseaseFactory;
     private PillManager pillManager;
@@ -39,6 +41,7 @@ public class DiseaseManager {
         diseaseFactory = new DiseaseFactory(pillManager.getPillsInPlay(), assets, pillManager, level);
 
         possibleDiseases.addAll(diseaseFactory.getDiseaseList(levelDiseases));
+        allDiseases.addAll(possibleDiseases);
         grandpaDamageTimer = 0;
         activateDiseaseTimer = 0;
     }
@@ -70,14 +73,18 @@ public class DiseaseManager {
             activateDiseaseTimer = 0;
         }
 
-       // Gdx.app.log("Active Diseases: ", activeDiseases.toString());
-       // Gdx.app.log("Possible Diseases: ", possibleDiseases.toString());
+        Gdx.app.log("Active Diseases: ", activeDiseases.toString());
+        Gdx.app.log("Possible Diseases: ", possibleDiseases.toString());
     }
 
     public void draw(SpriteBatch batch) {
         for (Disease disease : activeDiseases) {
             disease.draw(batch);
         }
+    }
+
+    public ArrayList<Disease> getAllDiseases() {
+        return allDiseases;
     }
 
     public boolean tryCureDisease(Pill pill) {
