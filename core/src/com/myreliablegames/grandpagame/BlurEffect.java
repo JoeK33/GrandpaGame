@@ -35,6 +35,10 @@ public class BlurEffect {
             return;
         }
 
+        ensureOffscreenRenderTargetsAreInitialized(
+                Gdx.graphics.getWidth(),
+                Gdx.graphics.getHeight());
+
         blurShader = BlurShader.load();
 
         // We will render the pills to the offscreen render target when performing a blur.
