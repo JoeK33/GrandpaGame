@@ -36,6 +36,11 @@ public class TitleScreen extends BaseScreen implements InputProcessor {
     }
 
     @Override
+    public void show() {
+        Gdx.input.setInputProcessor(this);
+    }
+
+    @Override
     public void resize(int width, int height) {
         super.resize(width, height);
     }
@@ -61,7 +66,6 @@ public class TitleScreen extends BaseScreen implements InputProcessor {
     public boolean keyTyped(char character) {
         return false;
     }
-
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {

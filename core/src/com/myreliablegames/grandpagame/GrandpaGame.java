@@ -2,6 +2,8 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.myreliablegames.grandpagame.Screens.GameOverScreen;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.LevelSelectScreen;
@@ -10,17 +12,40 @@ import com.myreliablegames.grandpagame.Screens.WinScreen;
 
 public class GrandpaGame extends Game {
 
+	private Music music;
+	private GameScreen gameScreen;
+
 	@Override
 	public void create () {
+
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
+		music.setLooping(true);
 		Gdx.input.setCatchBackKey(true);
+		music.play();
+		openTitleScreen();
+	}
+
+	public void openTitleScreen() {
+		if (!music.isPlaying()){
+			music.play();
+		}
 		setScreen(new TitleScreen(this));
 	}
 
 	public void startLevel(LevelNumber level) {
-		setScreen(new GameScreen(this, level));
+		music.stop();
+		if (gameScreen != null) {
+			gameScreen.dispose();
+			gameScreen = null;
+		}
+		GameScreen gameScreen = new GameScreen(this, level);
+		setScreen(gameScreen);
 	}
 
 	public void openLevelSelectScreen() {
+		if (!music.isPlaying()){
+			music.play();
+		}
 		setScreen(new LevelSelectScreen(this));
 	}
 

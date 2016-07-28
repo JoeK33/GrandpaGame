@@ -14,10 +14,14 @@ import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
 
 /**
  * Created by Joe on 7/5/2016.
+
+
+ Note: When making a level, do not use blurry vision and colorblind at the same time or colorblind will clear the black and white shader.
  */
 public abstract class Level {
 
     BaseLevelAssets baseLevelAssets;
+    LevelAssets levelAssets;
     PillManager pillManager;
     Grandpa grandpa;
     boolean paused;
@@ -40,14 +44,15 @@ public abstract class Level {
 
 
         baseLevelAssets = assets;
+        levelAssets = new LevelAssets(levelNumber, baseLevelAssets);
         pillManager = new PillManager(baseLevelAssets);
         paused = false;
         grandpa = new Grandpa(this);
         gameHUD = new GameHUD(baseLevelAssets, grandpa, gameScreen, this);
-        backGround = new BackGround();
+        backGround = new BackGround(levelAssets);
 
-        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen, assets, grandpa, pillManager.getUniquePills(), gameScreen.getFont());
-        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen, assets, grandpa);
+        this.medicineCabinetScreen = new MedicineCabinetScreen(game, gameScreen, assets, grandpa, pillManager.getUniquePills(), levelAssets);
+        this.prescriptionScreen = new PrescriptionScreen(game, gameScreen, assets, grandpa, levelAssets);
 
         // Remove input processor so players can not change levels while pills are falling.
         Gdx.input.setInputProcessor(null);
@@ -72,6 +77,7 @@ public abstract class Level {
 
     public void show() {
         Gdx.input.setInputProcessor(multiplexer);
+        levelAssets.playMusic();
     }
 
     public void render(SpriteBatch batch) {
@@ -119,6 +125,7 @@ public abstract class Level {
 
     public void dispose() {
         baseLevelAssets.dispose();
+        levelAssets.dispose();
     }
 
     public void touchDown(Vector2 touchPos) {
@@ -133,6 +140,7 @@ public abstract class Level {
 
     public void backPress() {
         baseLevelAssets.diseaseAssets.stopSounds();
+        levelAssets.stopMusic();
     }
 
     public void pauseToggle() {

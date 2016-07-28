@@ -46,6 +46,11 @@ public class BaseScreen extends ScreenAdapter {
     }
 
     @Override
+    public void show() {
+
+    }
+
+    @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
         camera.setToOrtho(false, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);

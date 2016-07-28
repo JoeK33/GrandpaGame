@@ -1,8 +1,7 @@
 package com.myreliablegames.grandpagame;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 /**
@@ -10,14 +9,15 @@ import com.badlogic.gdx.math.MathUtils;
  */
 public class BackGround {
 
-    private Texture background = new Texture(Gdx.files.internal("bathroombg.png"));
+    private TextureRegion background;
     private final float MAXIMUM_WIGGLE = 15;
     private boolean shaking;
 
     private float shakeOffsetX;
     private float shakeOffsetY;
 
-    public BackGround() {
+    public BackGround(LevelAssets assets) {
+        this.background = assets.getBackground();
 
     }
 
@@ -42,6 +42,4 @@ public class BackGround {
         shakeOffsetX = 0;
         shakeOffsetY = 0;
     }
-
-
 }

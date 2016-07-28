@@ -1,6 +1,7 @@
 package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,12 +27,10 @@ public class LevelSelectButtonHolder {
         this.font.getData().setScale(.5f);
         this.font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         stage = new Stage(levelSelectScreen.getViewport());
-        Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin();
         skin.add("default", this.font);
         table = new Table(skin);
         table.defaults().pad(25);
-
         Pixmap pixmap = new Pixmap(155, 100, Pixmap.Format.RGB888);
         skin.add("default", new Texture(pixmap));
 
@@ -67,6 +66,10 @@ public class LevelSelectButtonHolder {
         table.setFillParent(true);
         stage.addActor(table);
         table.pack();
+    }
+
+    public InputProcessor getInputProcessor() {
+        return this.stage;
     }
 
     public void render(float delta) {

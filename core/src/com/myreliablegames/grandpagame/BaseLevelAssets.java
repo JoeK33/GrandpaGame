@@ -74,7 +74,10 @@ public class BaseLevelAssets {
         loadingBarBackgroundPatch = new NinePatch(skinAtlas.findRegion("default-round"), 5, 5, 4, 4);
         loadingBarPatch = new NinePatch(skinAtlas.findRegion("default-round-down"), 5, 5, 4, 4);
 
+    }
 
+    public AssetManager getAssetManager() {
+        return this.assetManager;
     }
 
     public void dispose() {
@@ -99,7 +102,6 @@ public class BaseLevelAssets {
             ringingInEars.stop();
         }
     }
-
 
     public class PillAssets {
 
@@ -310,5 +312,4 @@ public class BaseLevelAssets {
             }
         }
     }
-
 }

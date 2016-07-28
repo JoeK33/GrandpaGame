@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.myreliablegames.grandpagame.BackGround;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.Grandpa;
 import com.myreliablegames.grandpagame.GrandpaGame;
 import com.myreliablegames.grandpagame.Level;
+import com.myreliablegames.grandpagame.LevelAssets;
 import com.myreliablegames.grandpagame.PaperHUD;
 import com.myreliablegames.grandpagame.PrescriptionWriter;
 
@@ -22,13 +24,15 @@ public class PrescriptionScreen extends BaseScreen {
     private PaperHUD hud;
     private PrescriptionWriter writer;
     private Grandpa grandpa;
+    private BackGround backGround;
 
-    public PrescriptionScreen(GrandpaGame game, GameScreen gameScreen, BaseLevelAssets assets, Grandpa grandpa) {
+    public PrescriptionScreen(GrandpaGame game, GameScreen gameScreen, BaseLevelAssets assets, Grandpa grandpa, LevelAssets levelAssets) {
         super(game);
         this.gameScreen = gameScreen;
         paperBG = new NinePatchDrawable(assets.paperPatch);
         hud = new PaperHUD(game, gameScreen, assets, grandpa);
         this.grandpa = grandpa;
+        backGround = new BackGround(levelAssets);
 
     }
 
@@ -41,6 +45,7 @@ public class PrescriptionScreen extends BaseScreen {
         Gdx.gl.glClearColor(1, .5f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        backGround.draw(batch);
         paperBG.draw(batch,
                 Constants.PAPER_NINEPATCH_BUFFER,
                 Constants.PAPER_NINEPATCH_BUFFER,
