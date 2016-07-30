@@ -14,11 +14,11 @@ public class LevelTwo extends Level {
 
     public LevelTwo(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets, GrandpaGame.LevelNumber.Two);
-        pillManager.populate(20, 10, true);
+        pillManager.populate(20, 7, true);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
            levelDiseases.add(DiseaseName.Shakes);
-        //   levelDiseases.add(DiseaseName.SeeSnakes);
-           levelDiseases.add(DiseaseName.Sparkles);
+           levelDiseases.add(DiseaseName.SeeSnakes);
+      //     levelDiseases.add(DiseaseName.Sparkles);
            levelDiseases.add(DiseaseName.DoubleVision);
            levelDiseases.add(DiseaseName.Colorblind);
         //   levelDiseases.add(DiseaseName.BlurryVision);

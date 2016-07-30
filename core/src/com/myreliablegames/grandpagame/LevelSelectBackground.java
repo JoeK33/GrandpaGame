@@ -20,7 +20,7 @@ public class LevelSelectBackground {
     private final float SCROLL_SPEED = 40;
     private float verticalSpacing = 20f;
     private float horizontalSpacing = 20f;
-    private final float bufferTiles = 5;
+    private final float bufferTiles = 6;
 
     public LevelSelectBackground() {
         this.bgTexture = new Texture(Gdx.files.internal("pillorganizer.png"));

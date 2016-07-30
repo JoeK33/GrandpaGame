@@ -10,7 +10,6 @@ public class Grandpa {
 
     private int health = Constants.GRANDPA_HEALTH;
     private DiseaseManager diseaseManager;
-    private int correctPillsTaken = 0;
     private Level level;
 
     public Grandpa(Level level) {
@@ -25,19 +24,12 @@ public class Grandpa {
         if (diseaseManager.tryCureDisease(pill)) {
             // Correct pill
             health += pill.getHealthValue();
-            correctPillsTaken++;
             Gdx.app.log("Health", " up");
         } else {
             // Wrong pill
-            health -= pill.getHealthValue();
+           damage(pill.getHealthValue());
             Gdx.app.log("Health", "down");
-
         }
-
-        if (health < 1) {
-            level.lose();
-        }
-
         constrainHealth();
         Gdx.app.log("Health", Integer.toString(health));
     }
@@ -56,6 +48,10 @@ public class Grandpa {
 
     public void damage(int damage) {
         this.health -= damage;
+
+        if (this.health < 1) {
+            level.lose();
+        }
     }
 
     public int getHealth() {

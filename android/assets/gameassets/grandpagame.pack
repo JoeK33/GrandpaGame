@@ -5,119 +5,126 @@ filter: Nearest,Nearest
 repeat: none
 bathroombg
   rotate: false
-  xy: 1, 624
+  xy: 1, 623
   size: 626, 374
   orig: 626, 374
   offset: 0, 0
   index: -1
 factorybg
   rotate: false
-  xy: 1, 248
+  xy: 1, 247
   size: 626, 374
   orig: 626, 374
   offset: 0, 0
   index: -1
 snake
   rotate: false
-  xy: 629, 870
+  xy: 629, 869
   size: 384, 128
   orig: 384, 128
   offset: 0, 0
   index: -1
-pillorganizer
-  rotate: false
-  xy: 1, 165
-  size: 144, 81
-  orig: 144, 81
-  offset: 0, 0
-  index: -1
 backbuttondown
   rotate: false
-  xy: 629, 788
+  xy: 1, 165
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 backbuttonup
   rotate: false
-  xy: 1, 83
+  xy: 629, 787
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 drinkbuttondown
   rotate: false
-  xy: 147, 166
+  xy: 1, 83
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 drinkbuttonup
   rotate: false
-  xy: 629, 706
+  xy: 83, 165
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 eatbuttondown
   rotate: false
-  xy: 711, 788
+  xy: 629, 705
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 eatbuttonup
   rotate: false
-  xy: 1, 1
+  xy: 711, 787
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 pillbuttondown
   rotate: false
-  xy: 229, 166
+  xy: 1, 1
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 pillbuttonup
   rotate: false
-  xy: 629, 624
+  xy: 83, 83
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 prescriptionbuttondown
   rotate: false
-  xy: 711, 706
+  xy: 165, 165
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 prescriptionbuttonup
   rotate: false
-  xy: 793, 788
+  xy: 629, 623
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 paper
   rotate: false
-  xy: 311, 180
+  xy: 711, 719
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 paper2
   rotate: false
-  xy: 629, 556
+  xy: 793, 801
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
+ant
+  rotate: false
+  xy: 83, 17
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+grandmasig
+  rotate: false
+  xy: 165, 99
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 sparkle
   rotate: false
-  xy: 711, 640
+  xy: 247, 181
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

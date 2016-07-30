@@ -2,8 +2,11 @@ package com.myreliablegames.grandpagame.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.myreliablegames.grandpagame.Constants;
 import com.myreliablegames.grandpagame.GrandpaGame;
 
@@ -13,11 +16,15 @@ import com.myreliablegames.grandpagame.GrandpaGame;
 public class TitleScreen extends BaseScreen implements InputProcessor {
 
     private Texture img;
+    private String startString = "Click To Start";
+    private long blinkStart;
 
     public TitleScreen(GrandpaGame game) {
         super(game);
-        img = new Texture("badlogic.jpg");
+        img = new Texture("title.png");
+
         Gdx.input.setInputProcessor(this);
+        blinkStart = TimeUtils.nanoTime();
     }
 
     public void render(float delta) {
@@ -25,14 +32,19 @@ public class TitleScreen extends BaseScreen implements InputProcessor {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        font.draw(batch, "Title Screen", 0, Constants.WORLD_HEIGHT);
-        font.draw(batch, "Click to Start", 0, Constants.WORLD_HEIGHT - 50);
-        batch.draw(img, Constants.WORLD_WIDTH - img.getWidth(), 0);
+        batch.draw(img, 0, 0);
+        if (blinkStart < TimeUtils.nanoTime() - TimeUtils.millisToNanos(500)) {
+            font.draw(batch, startString, (Constants.WORLD_WIDTH / 2) - (getStringLength(startString) / 2), font.getLineHeight());
+        }
+        if (blinkStart < TimeUtils.nanoTime() - TimeUtils.millisToNanos(1500)) {
+            blinkStart = TimeUtils.nanoTime();
+        }
         batch.end();
     }
 
     public void dispose() {
         batch.dispose();
+        img.dispose();
     }
 
     @Override
@@ -47,8 +59,14 @@ public class TitleScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        game.openLevelSelectScreen();
+        game.openIntroScreen();
         return false;
+    }
+
+    GlyphLayout layout = new GlyphLayout();
+    private int getStringLength(String s) {
+        layout.setText(font, s);
+        return (int) layout.width;
     }
 
     // Unused input methods

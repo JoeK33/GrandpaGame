@@ -1,9 +1,8 @@
 package com.myreliablegames.grandpagame.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.myreliablegames.grandpagame.BackGround;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
@@ -27,6 +26,7 @@ public class MedicineCabinetScreen extends BaseScreen {
     private PaperHUD hud;
     private MedicineCabinetWriter writer;
     private BackGround backGround;
+    private TextureRegion grandmaSig;
 
     public MedicineCabinetScreen(GrandpaGame game, GameScreen gameScreen, BaseLevelAssets assets, Grandpa grandpa, ArrayList<Pill> pills, LevelAssets levelAssets) {
         super(game);
@@ -35,6 +35,7 @@ public class MedicineCabinetScreen extends BaseScreen {
         hud = new PaperHUD(game, gameScreen, assets, grandpa);
         writer = new MedicineCabinetWriter(pills, grandmaFont);
         backGround = new BackGround(levelAssets);
+        grandmaSig = assets.grandmaSignature;
     }
 
     public void render(float delta) {
@@ -43,11 +44,15 @@ public class MedicineCabinetScreen extends BaseScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         backGround.draw(batch);
-        paperBG.draw(batch,
+        paperBG.draw(
+                batch,
                 Constants.PAPER_NINEPATCH_BUFFER,
                 Constants.PAPER_NINEPATCH_BUFFER,
                 Constants.WORLD_WIDTH - Constants.PAPER_NINEPATCH_BUFFER * 2,
-                Constants.WORLD_HEIGHT - Constants.PAPER_NINEPATCH_BUFFER * 3);
+                Constants.WORLD_HEIGHT - Constants.PAPER_NINEPATCH_BUFFER * 3
+        );
+
+        batch.draw(grandmaSig, (Constants.WORLD_WIDTH / 2) - (grandmaSig.getRegionWidth() / 2), Constants.PAPER_NINEPATCH_BUFFER);
 
         writer.draw(batch);
         batch.end();

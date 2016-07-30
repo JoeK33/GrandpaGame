@@ -17,7 +17,7 @@ public class PillManager {
     private ArrayList<DrugName> uniquePillDrugNames = new ArrayList<DrugName>();
     private ArrayList<Pill> uniquePills = new ArrayList<Pill>();
     private BaseLevelAssets assets;
-    private float YDrawOffset = 100;
+    private float YDrawOffset = 80;
     private float XDrawOffset = 76;
     private float pillPadding = 3;
     private PillFactory pillFactory;

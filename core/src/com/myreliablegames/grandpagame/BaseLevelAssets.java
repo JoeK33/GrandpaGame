@@ -41,6 +41,8 @@ public class BaseLevelAssets {
     public final NinePatch paperPatch;
     public final NinePatch paper2Patch;
 
+    public final TextureRegion grandmaSignature;
+
 
     public BaseLevelAssets() {
         assetManager.load("gameassets/grandpagame.pack", TextureAtlas.class);
@@ -63,6 +65,8 @@ public class BaseLevelAssets {
 
         backButtonUp = atlas.findRegion("backbuttonup");
         backButtonDown = atlas.findRegion("backbuttondown");
+
+        grandmaSignature = atlas.findRegion("grandmasig");
 
         pillAssets = new PillAssets(atlas);
         diseaseAssets = new DiseaseAssets(atlas);
@@ -87,12 +91,14 @@ public class BaseLevelAssets {
     public class DiseaseAssets {
 
         public final TextureRegion snake;
+        public final TextureRegion ant;
         public final TextureRegion sparkle;
 
         public final Music ringingInEars;
 
         public DiseaseAssets(TextureAtlas atlas) {
             snake = atlas.findRegion("snake");
+            ant = atlas.findRegion("ant");
             sparkle = atlas.findRegion("sparkle");
 
             ringingInEars = assetManager.get("sounds/ringing.wav");

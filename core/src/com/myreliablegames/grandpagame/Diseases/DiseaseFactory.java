@@ -54,11 +54,15 @@ public class DiseaseFactory {
             MigraineSparkles sparkles = new MigraineSparkles(possibleCures.get(0), assets);
             possibleCures.remove(0);
             return sparkles;
-        }else if (name == DiseaseName.Shakes) {
+        } else if (name == DiseaseName.Shakes) {
             Shakes shakes = new Shakes(possibleCures.get(0), pillManager, level);
             possibleCures.remove(0);
             return shakes;
-        }else {
+        } else if (name == DiseaseName.Ants) {
+            AntsDisease antsDisease = new AntsDisease(possibleCures.get(0), assets);
+            possibleCures.remove(0);
+            return antsDisease;
+        } else {
             return new Colorblind(DrugName.Anipine, pillManager);
         }
     }

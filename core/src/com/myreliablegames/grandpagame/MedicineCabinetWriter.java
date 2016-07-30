@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Joe on 7/22/2016.
@@ -19,13 +20,23 @@ public class MedicineCabinetWriter {
     private float yOffset = 0;
     private float xOffset = 0;
     GlyphLayout layout = new GlyphLayout();
+    boolean shuffled = false;
 
     public MedicineCabinetWriter(ArrayList<Pill> pills, BitmapFont font) {
         this.pills = pills;
         this.font = font;
+
+    }
+
+    private void shuffle() {
+        Collections.shuffle(pills);
     }
 
     public void draw(SpriteBatch batch) {
+        if (!shuffled) {
+            shuffle();
+            shuffled = true;
+        }
         int row = 1;
         int col = 0;
         for (Pill pill : pills) {
@@ -39,12 +50,9 @@ public class MedicineCabinetWriter {
                     Constants.WORLD_HEIGHT - Constants.PAPER_NINEPATCH_BUFFER * 2 - (row * pillYSpacing) + yOffset);
 
             font.draw(batch,
-                   pill.getPillDescription().getDrugName().toString(),
+                    pill.getPillDescription().getDrugName().toString(),
                     Constants.PAPER_NINEPATCH_BUFFER * 3 - (getStringWidth(pill.getPillDescription().getDrugName().toString()) / 2) + (Constants.PILL_SIZE / 2) + (col * pillXSpacing) + xOffset,
                     Constants.WORLD_HEIGHT - Constants.PAPER_NINEPATCH_BUFFER * 2 - (row * pillYSpacing) - textBuffer + yOffset);
-
-
-
 
             row++;
         }

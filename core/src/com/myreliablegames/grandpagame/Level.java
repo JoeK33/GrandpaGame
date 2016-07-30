@@ -2,11 +2,11 @@ package com.myreliablegames.grandpagame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.myreliablegames.grandpagame.Diseases.DiseaseManager;
 import com.myreliablegames.grandpagame.Screens.GameScreen;
 import com.myreliablegames.grandpagame.Screens.MedicineCabinetScreen;
@@ -14,9 +14,9 @@ import com.myreliablegames.grandpagame.Screens.PrescriptionScreen;
 
 /**
  * Created by Joe on 7/5/2016.
-
-
- Note: When making a level, do not use blurry vision and colorblind at the same time or colorblind will clear the black and white shader.
+ * <p/>
+ * <p/>
+ * Note: When making a level, do not use blurry vision and colorblind at the same time or colorblind will clear the black and white shader.
  */
 public abstract class Level {
 
@@ -35,8 +35,10 @@ public abstract class Level {
     protected GrandpaGame.LevelNumber levelNumber;
     private BlurEffect blurEffect;
     private BackGround backGround;
-    private float blurryVisionIntensity;
-
+    private Sound levelWinSound;
+    private SaveGameData saveGameData = new SaveGameData();
+    private boolean winning = false;
+    private boolean losing = false;
 
     public Level(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets, GrandpaGame.LevelNumber levelNumber) {
         this.game = game;
@@ -65,6 +67,7 @@ public abstract class Level {
 
         this.levelNumber = levelNumber;
         blurEffect = new BlurEffect();
+        levelWinSound = Gdx.audio.newSound(Gdx.files.internal("sounds/winlevelsound.wav"));
     }
 
     public void shakeOn() {
@@ -121,11 +124,14 @@ public abstract class Level {
         game.setScreen(medicineCabinetScreen);
     }
 
-    public void showPrescriptionScreen() {game.setScreen(prescriptionScreen);}
+    public void showPrescriptionScreen() {
+        game.setScreen(prescriptionScreen);
+    }
 
     public void dispose() {
         baseLevelAssets.dispose();
         levelAssets.dispose();
+        levelWinSound.dispose();
     }
 
     public void touchDown(Vector2 touchPos) {
@@ -157,7 +163,41 @@ public abstract class Level {
     }
 
     public void lose() {
-        Gdx.app.log("Loser", "Game over");
+        if (!winning && !losing) {
+            losing = true;
+            Gdx.input.setInputProcessor(null);
+            levelAssets.stopMusic();
+            baseLevelAssets.diseaseAssets.stopSounds();
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    game.openGameOverScreen();
+                }
+            }, .5f);
+        }
+    }
+
+    public void win() {
+        if (!winning && !losing) {
+            winning = true;
+            levelWinSound.play();
+            Gdx.input.setInputProcessor(null);
+            levelAssets.stopMusic();
+            baseLevelAssets.diseaseAssets.stopSounds();
+            saveGameData.unlockNextLevel(levelNumber);
+            Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    if (levelNumber == GrandpaGame.LevelNumber.Six) {
+                        game.openWinLevelScreen();
+                    } else {
+                        game.openLevelSelectScreen();
+                    }
+                }
+            }, 1f);
+        }
     }
 
     public void setBlurryVisionIntensity(float blurryVisionIntensity) {

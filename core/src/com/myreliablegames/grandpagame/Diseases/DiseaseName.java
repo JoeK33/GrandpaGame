@@ -10,5 +10,6 @@ public enum DiseaseName {
     BlurryVision,
     SeeSnakes,
     Sparkles,
-    Shakes;
+    Shakes,
+    Ants;
 }

@@ -28,6 +28,7 @@ public class DiseaseManager {
     private Grandpa grandpa;
     private float grandpaDamageTimer;
     private float activateDiseaseTimer;
+    private Level level;
 
     public DiseaseManager(
             PillManager pillManager,
@@ -35,11 +36,10 @@ public class DiseaseManager {
             Grandpa grandpa,
             BaseLevelAssets assets,
             Level level) {
-
+        this.level = level;
         this.grandpa = grandpa;
         this.pillManager = pillManager;
         diseaseFactory = new DiseaseFactory(pillManager.getPillsInPlay(), assets, pillManager, level);
-
         possibleDiseases.addAll(diseaseFactory.getDiseaseList(levelDiseases));
         allDiseases.addAll(possibleDiseases);
         grandpaDamageTimer = 0;
@@ -47,9 +47,6 @@ public class DiseaseManager {
     }
 
     public void update(float delta) {
-
-        grandpaDamageTimer += delta;
-        activateDiseaseTimer += delta;
 
         Iterator<Disease> iterator = activeDiseases.iterator();
         while (iterator.hasNext()) {
@@ -73,8 +70,15 @@ public class DiseaseManager {
             activateDiseaseTimer = 0;
         }
 
+        if (checkWinState()) {
+            level.win();
+        }
+
         Gdx.app.log("Active Diseases: ", activeDiseases.toString());
         Gdx.app.log("Possible Diseases: ", possibleDiseases.toString());
+
+        grandpaDamageTimer += delta;
+        activateDiseaseTimer += delta;
     }
 
     public void draw(SpriteBatch batch) {
@@ -134,6 +138,20 @@ public class DiseaseManager {
                 }
             }
         }
+    }
+
+    private boolean checkWinState() {
+        ArrayList<DrugName> drugsRemaining = pillManager.getActiveDrugs();
+
+        if (activeDiseases.isEmpty()) {
+            for (Disease d : possibleDiseases) {
+               if (drugsRemaining.contains(d.getDescription().getCure())) {
+                    return false;
+                }
+            }
+                return true;
+        }
+        return false;
     }
 
     Random rand = new Random(TimeUtils.nanoTime());
