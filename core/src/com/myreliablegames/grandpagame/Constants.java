@@ -22,6 +22,7 @@ public class Constants {
 
     public static final int BLURRY_VISION_DAMAGE = 10;
     public static final int SNAKE_DAMAGE = 20;
+    public static final int ANT_DAMAGE = 10;
     public static final int SPARKLE_DAMAGE = 15;
     public static final int SHAKES_DAMAGE = 10;
 

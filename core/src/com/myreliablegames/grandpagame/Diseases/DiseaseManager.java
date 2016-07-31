@@ -134,6 +134,8 @@ public class DiseaseManager {
                         disease.beginDisease();
                         activeDiseases.add(disease);
                         iterator.remove();
+                        // return to only add a single disease
+                        return;
                     }
                 }
             }

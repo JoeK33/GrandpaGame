@@ -16,7 +16,7 @@ public class AntsDisease extends Disease {
     private final int NUM_ANTS = 5;
 
     public AntsDisease(DrugName cure, BaseLevelAssets assets) {
-        super(new DiseaseDescription(cure, Constants.SNAKE_DAMAGE), DiseaseName.SeeSnakes);
+        super(new DiseaseDescription(cure, Constants.ANT_DAMAGE), DiseaseName.Ants);
         for (int i = 0; i < NUM_ANTS; i++) {
             ants.add(new Ant(assets.diseaseAssets.ant));
         }
