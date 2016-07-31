@@ -32,5 +32,5 @@ public class Constants {
     public static final long DISEASE_DAMAGE_INTERVAL = 3;
 
     public static final long DISEASE_SPAWN_INTERVAL = 9;
-    public static final long DISEASE_SPAWN_INTERVAL_FASTER = 7;
+    public static final long DISEASE_SPAWN_INTERVAL_FASTER = 8;
 }
