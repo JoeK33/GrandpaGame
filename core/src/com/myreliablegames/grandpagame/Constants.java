@@ -15,15 +15,15 @@ public class Constants {
 
     public static final int GRANDPA_HEALTH = 100;
 
-    public static final int COLORBLIND_DAMAGE = 10;
+    public static final int COLORBLIND_DAMAGE = 9;
 
-    public static final int RINGING_DAMAGE = 15;
-    public static final int DOUBLE_VISION_DAMAGE = 10;
+    public static final int RINGING_DAMAGE = 10;
+    public static final int DOUBLE_VISION_DAMAGE = 9;
 
-    public static final int BLURRY_VISION_DAMAGE = 10;
-    public static final int SNAKE_DAMAGE = 20;
+    public static final int BLURRY_VISION_DAMAGE = 9;
+    public static final int SNAKE_DAMAGE = 15;
     public static final int ANT_DAMAGE = 10;
-    public static final int SPARKLE_DAMAGE = 15;
+    public static final int SPARKLE_DAMAGE = 10;
     public static final int SHAKES_DAMAGE = 10;
 
     // Controls the "blurriness" applied during blurry vision. Larger numbers means more blur.
@@ -31,5 +31,6 @@ public class Constants {
 
     public static final long DISEASE_DAMAGE_INTERVAL = 3;
 
-    public static final long DISEASE_SPAWN_INTERVAL = 10;
+    public static final long DISEASE_SPAWN_INTERVAL = 9;
+    public static final long DISEASE_SPAWN_INTERVAL_FASTER = 7;
 }

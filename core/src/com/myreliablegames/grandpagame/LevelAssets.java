@@ -40,6 +40,7 @@ public class LevelAssets {
         }
 
         music.setLooping(true);
+        music.setVolume(.8f);
     }
 
     private void loadMusic(String filePath) {

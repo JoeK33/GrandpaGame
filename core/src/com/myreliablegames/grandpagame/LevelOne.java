@@ -14,7 +14,7 @@ public class LevelOne extends Level {
 
     public LevelOne(GameScreen gameScreen, GrandpaGame game, BaseLevelAssets assets) {
         super(gameScreen, game, assets, GrandpaGame.LevelNumber.One);
-        pillManager.populate(6, 5, false);
+        pillManager.populate(10, 5, false);
         ArrayList<DiseaseName> levelDiseases =  new ArrayList<DiseaseName>();
      //   levelDiseases.add(DiseaseName.Shakes);
      //   levelDiseases.add(DiseaseName.SeeSnakes);
@@ -23,7 +23,7 @@ public class LevelOne extends Level {
         levelDiseases.add(DiseaseName.Colorblind);
      //   levelDiseases.add(DiseaseName.BlurryVision);
         levelDiseases.add(DiseaseName.RingingInEars);
-        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this);
+        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this, false);
         grandpa.setDiseaseManager(diseaseManager);
         prescriptionScreen.initWriter();
     }

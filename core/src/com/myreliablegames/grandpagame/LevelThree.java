@@ -23,7 +23,7 @@ public class LevelThree extends Level {
            levelDiseases.add(DiseaseName.BlurryVision);
         levelDiseases.add(DiseaseName.Ants);
         //   levelDiseases.add(DiseaseName.RingingInEars);
-        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this);
+        this.diseaseManager = new DiseaseManager(pillManager, levelDiseases, grandpa, assets, this, false);
         grandpa.setDiseaseManager(diseaseManager);
         prescriptionScreen.initWriter();
     }

@@ -29,13 +29,15 @@ public class DiseaseManager {
     private float grandpaDamageTimer;
     private float activateDiseaseTimer;
     private Level level;
+    private boolean fasterDiseaseSpawn;
 
     public DiseaseManager(
             PillManager pillManager,
             ArrayList<DiseaseName> levelDiseases,
             Grandpa grandpa,
             BaseLevelAssets assets,
-            Level level) {
+            Level level, boolean fasterDiseaseSpawn) {
+        this.fasterDiseaseSpawn = fasterDiseaseSpawn;
         this.level = level;
         this.grandpa = grandpa;
         this.pillManager = pillManager;
@@ -65,9 +67,16 @@ public class DiseaseManager {
             grandpaDamageTimer = 0;
         }
 
-        if (activateDiseaseTimer > Constants.DISEASE_SPAWN_INTERVAL) {
-            activateADisease();
-            activateDiseaseTimer = 0;
+        if (fasterDiseaseSpawn) {
+            if (activateDiseaseTimer > Constants.DISEASE_SPAWN_INTERVAL_FASTER) {
+                activateADisease();
+                activateDiseaseTimer = 0;
+            }
+        } else {
+            if (activateDiseaseTimer > Constants.DISEASE_SPAWN_INTERVAL) {
+                activateADisease();
+                activateDiseaseTimer = 0;
+            }
         }
 
         if (checkWinState()) {
@@ -147,11 +156,11 @@ public class DiseaseManager {
 
         if (activeDiseases.isEmpty()) {
             for (Disease d : possibleDiseases) {
-               if (drugsRemaining.contains(d.getDescription().getCure())) {
+                if (drugsRemaining.contains(d.getDescription().getCure())) {
                     return false;
                 }
             }
-                return true;
+            return true;
         }
         return false;
     }

@@ -3,6 +3,7 @@ package com.myreliablegames.grandpagame.Screens;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.myreliablegames.grandpagame.BaseLevelAssets;
@@ -17,6 +18,8 @@ import com.myreliablegames.grandpagame.LevelFactory;
 public class GameScreen extends BaseScreen implements InputProcessor {
     private Level level;
     private BaseLevelAssets baseLevelAssets;
+    private String paused = "Paused";
+    private String touchContinue = "Touch to Continue";
 
     public GameScreen(GrandpaGame game, GrandpaGame.LevelNumber levelNumber) {
         super(game);
@@ -31,7 +34,8 @@ public class GameScreen extends BaseScreen implements InputProcessor {
 
         if (level.isPaused()) {
             batch.begin();
-            font.draw(batch, "     PAUSED \n TOUCH TO CONTINUE", 0, (Constants.WORLD_HEIGHT / 3) * 2);
+            font.draw(batch, paused, (Constants.WORLD_WIDTH / 2) - (getStringLength(paused) / 2), (Constants.WORLD_HEIGHT / 3) * 2);
+            font.draw(batch, touchContinue, (Constants.WORLD_WIDTH / 2) - (getStringLength(touchContinue) / 2), (Constants.WORLD_HEIGHT / 3) * 2 - font.getLineHeight());
             batch.end();
         } else {
             level.update(delta);
@@ -47,6 +51,12 @@ public class GameScreen extends BaseScreen implements InputProcessor {
     public void dispose() {
         batch.dispose();
         baseLevelAssets.dispose();
+    }
+
+    GlyphLayout layout = new GlyphLayout();
+    private int getStringLength(String s) {
+        layout.setText(font, s);
+        return (int) layout.width;
     }
 
     @Override

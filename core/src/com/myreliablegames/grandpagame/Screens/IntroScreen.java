@@ -27,7 +27,7 @@ public class IntroScreen extends BaseScreen {
             public void run() {
                 game.openLevelSelectScreen();
             }
-        }, 3.5f);
+        }, 5f);
     }
 
     public void render(float delta) {
